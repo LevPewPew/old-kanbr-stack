@@ -1,7 +1,7 @@
 {
-  "name": "hello-next",
-  "version": "1.0.0",
-  "description": "",
+  "name": "kanbr",
+  "version": "0.1.0",
+  "description": "be agile",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/node": "17.0.14",
     "@types/react": "17.0.38",
+    "prisma": "^4.0.0",
     "typescript": "4.5.5"
   }
 }
