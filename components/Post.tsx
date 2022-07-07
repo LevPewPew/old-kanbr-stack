@@ -1,6 +1,6 @@
-import React from "react";
-import Router from "next/router";
-import ReactMarkdown from "react-markdown";
+import React from 'react';
+import Router from 'next/router';
+import ReactMarkdown from 'react-markdown';
 
 export type PostProps = {
   id: string;
@@ -11,13 +11,17 @@ export type PostProps = {
   } | null;
   content: string;
   published: boolean;
+  createdAt: string;
 };
 
 const Post: React.FC<{ post: PostProps }> = ({ post }) => {
-  const authorName = post.author ? post.author.name : "Unknown author";
+  const authorName = post.author ? post.author.name : 'Unknown author';
+  const createdAt = new Date(post.createdAt).toDateString();
+
   return (
-    <div onClick={() => Router.push("/p/[id]", `/p/${post.id}`)}>
+    <div onClick={() => Router.push('/p/[id]', `/p/${post.id}`)}>
       <h2>{post.title}</h2>
+      <p>{createdAt}</p>
       <small>By {authorName}</small>
       <ReactMarkdown children={post.content} />
       <style jsx>{`

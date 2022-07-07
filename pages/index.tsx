@@ -13,8 +13,9 @@ export const getStaticProps: GetStaticProps = async () => {
       },
     },
   });
+  const serializedFeed = JSON.parse(JSON.stringify(feed));
 
-  return { props: { feed } };
+  return { props: { feed: serializedFeed } };
 };
 
 type Props = {
