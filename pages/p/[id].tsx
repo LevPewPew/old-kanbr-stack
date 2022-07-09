@@ -16,19 +16,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       },
     },
   });
-  console.log({ post });
-  const serializedPost = JSON.parse(JSON.stringify(post));
-  console.log({ serializedPost });
-  /* LEFTOFF ok this works but seems stupid, and somehow it worked fine before...
-  possibly create a util to just wrap everything
-  
-  convert the parse n stringify to use this superjson thing instead, as i am concerned about performance
-  doing it this way for large arrays.
-  https://github.com/blitz-js/superjson#using-with-nextjs
-  */
 
   return {
-    props: serializedPost,
+    props: post,
   };
 };
 

@@ -11,17 +11,17 @@ export type PostProps = {
   } | null;
   content: string;
   published: boolean;
-  createdAt: string;
+  createdAt: Date;
 };
 
 const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   const authorName = post.author ? post.author.name : 'Unknown author';
-  const createdAt = new Date(post.createdAt).toDateString();
+  const formattedCreatedAt = post.createdAt.toDateString();
 
   return (
     <div onClick={() => Router.push('/p/[id]', `/p/${post.id}`)}>
       <h2>{post.title}</h2>
-      <p>{createdAt}</p>
+      <p>{formattedCreatedAt}</p>
       <small>By {authorName}</small>
       <ReactMarkdown children={post.content} />
       <style jsx>{`
