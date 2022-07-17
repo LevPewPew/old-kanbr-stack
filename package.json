@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "description": "be agile",
   "scripts": {
-    "dev": "next",
     "build": "next build",
+    "build:vercel": "prisma db push && next build",
+    "dev": "next",
     "start": "next start"
   },
   "keywords": [],
