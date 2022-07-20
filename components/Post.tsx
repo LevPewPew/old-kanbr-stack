@@ -23,7 +23,7 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
       <h2>{post.title}</h2>
       <p>{formattedCreatedAt}</p>
       <small>By {authorName}</small>
-      <ReactMarkdown children={post.content} />
+      <ReactMarkdown>{post.content}</ReactMarkdown>
       <style jsx>{`
         div {
           color: inherit;
