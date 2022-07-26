@@ -15,5 +15,3 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export default prisma;
-
-// TODO change this folder from lib to clients

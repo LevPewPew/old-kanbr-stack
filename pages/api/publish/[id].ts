@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import prisma from 'lib/prisma';
+import prisma from 'clients/prisma';
 
 // PUT /api/publish/:id
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {

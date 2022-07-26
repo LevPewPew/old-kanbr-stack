@@ -2,7 +2,7 @@ import React from 'react';
 import { GetStaticProps } from 'next';
 import Layout from 'components/Layout';
 import Post, { PostProps } from 'components/Post';
-import prisma from 'lib/prisma';
+import prisma from 'clients/prisma';
 import { trpc } from 'utils/trpc';
 
 export const getStaticProps: GetStaticProps = async () => {
