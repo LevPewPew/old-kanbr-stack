@@ -1,5 +1,6 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
+import { Heading, Text } from '@chakra-ui/react';
 import Layout from 'components/Layout';
 import prisma from 'clients/prisma';
 import { trpc } from 'utils/trpc';
@@ -32,9 +33,9 @@ function Deck(props: Props) {
         <h1>{hello.data.greeting}</h1>
         <main>
           {props.deck.map((card) => (
-            <div key={card.id} className="post">
-              <h2>{card.title}</h2>
-              <p>{card.description}</p>
+            <div key={card.id}>
+              <Heading as="h2">{card.title}</Heading>
+              <Text>{card.description}</Text>
             </div>
           ))}
         </main>
