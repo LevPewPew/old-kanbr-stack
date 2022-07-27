@@ -1,22 +1,47 @@
 import React, { useEffect } from 'react';
 import Router from 'next/router';
-import { useForm } from 'react-hook-form';
+import { useForm, UseFormProps } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormErrorMessage, FormLabel, FormControl, Input, Button } from '@chakra-ui/react';
 import { z } from 'zod';
 import { pickBy } from 'lodash';
 import { trpc } from 'utils/trpc';
+import { createCardSchema } from 'utils/zod-schemas';
 
-const schema = z.object({
-  /*  FIXME make this like the schema object in the trpc end. make a single source of truth
-  to share between them. unfortunately this message stuff makes it not so simple.
-  possibly create my own wrapper that checks if somehting is a ZodString, then
-  auto add the .min(1, { message: 'Fooquired' }) */
-  title: z.string().min(1, { message: 'Required' }),
-  description: z.string().nullish(),
-});
+function useZodForm<TSchema extends z.ZodType>(
+  props: Omit<UseFormProps<TSchema['_input']>, 'resolver'> & {
+    schema: TSchema;
+  },
+) {
+  const form = useForm<TSchema['_input']>({
+    ...props,
+    resolver: zodResolver(props.schema, undefined, {
+      // This makes it so we can use `.transform()`s on the schema without same transform getting applied again when it reaches the server
+      rawValues: true,
+    }),
+  });
 
-type Schema = z.infer<typeof schema>;
+  return form;
+}
+
+// const methods = useZodForm({
+//   schema: createCardValidation,
+//   defaultValues: {
+//     title: '',
+//     text: '',
+//   },
+// });
+
+// const schema = z.object({
+//   /*  FIXME make this like the schema object in the trpc end. make a single source of truth
+//   to share between them. unfortunately this message stuff makes it not so simple.
+//   possibly create my own wrapper that checks if somehting is a ZodString, then
+//   auto add the .min(1, { message: 'Fooquired' }) */
+//   title: z.string().min(1, { message: 'Required' }),
+//   description: z.string().nullish(),
+// });
+
+type Schema = z.infer<typeof createCardSchema>;
 
 export default function CreateCardForm() {
   const createCard = trpc.useMutation(['createCard']);
@@ -25,7 +50,15 @@ export default function CreateCardForm() {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-  } = useForm<Schema>({ resolver: zodResolver(schema) });
+  } = useZodForm({
+    schema: createCardSchema,
+    defaultValues: {
+      // NEXT do i need these default values?
+      title: '',
+      description: '',
+    },
+  });
+  // <Schema>
 
   function onSubmit(values: Schema) {
     const sanitizedValues = pickBy(values, (value) => {
@@ -44,6 +77,7 @@ export default function CreateCardForm() {
     }
   }, [createCard.isSuccess]);
 
+  // FIXME all fields turn red when error in only one field
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl isInvalid={Boolean(errors.title || errors.description)}>
