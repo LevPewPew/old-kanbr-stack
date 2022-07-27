@@ -44,6 +44,7 @@ model Session {
   @@map("sessions")
 }
 
+// TODO: create project and have tickets belong to a project, required
 model Ticket {
   id          String   @id @default(cuid())
   title       String
