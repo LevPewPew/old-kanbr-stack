@@ -14,7 +14,7 @@ const Header: React.FC = () => {
     <div className="left">
       <Link href="/">
         <a className="bold" data-active={isActive('/')}>
-          Feed
+          Home
         </a>
       </Link>
       <style jsx>{`
@@ -118,11 +118,18 @@ const Header: React.FC = () => {
       <div className="left">
         <Link href="/">
           <a className="bold" data-active={isActive('/')}>
-            Feed
+            Home
           </a>
         </Link>
-        <Link href="/drafts">
-          <a data-active={isActive('/drafts')}>My drafts</a>
+        <Link href="/deck">
+          <a className="bold" data-active={isActive('/deck')}>
+            Deck
+          </a>
+        </Link>
+        <Link href="/deck/create">
+          <a className="bold" data-active={isActive('/deck/create')}>
+            New Card
+          </a>
         </Link>
         <style jsx>{`
           .bold {
@@ -209,3 +216,5 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
+// FIXME: force dev watcher window to fail if there are TS errors
