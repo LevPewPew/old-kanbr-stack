@@ -4,6 +4,8 @@ import { withTRPC } from '@trpc/next';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AppRouter } from './api/trpc/[trpc]';
 
+// TODO: add an alias to absolute imports to make clear it is from this/self
+
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <SessionProvider session={pageProps.session}>
