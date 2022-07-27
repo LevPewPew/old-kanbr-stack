@@ -1,4 +1,17 @@
 {
   "presets": ["next/babel"],
-  "plugins": ["superjson-next"]
+  "plugins": [
+    "superjson-next",
+    [
+      "babel-plugin-transform-imports",
+      {
+        "lodash": {
+          "transform": "lodash/${member}",
+          "preventFullImport": true
+        }
+      }
+    ]
+  ]
 }
+
+/* FIXME: remove superjason if not using SSR in tRPC means it is not fixing anything */
