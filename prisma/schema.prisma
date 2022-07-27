@@ -44,9 +44,8 @@ model Session {
   @@map("sessions")
 }
 
-// TODO: create project and have tickets belong to a project, required
-// TODO: change all "ticket" to "card", better branding
-model Ticket {
+// TODO: create a project model, and have card belong to a project, required
+model Card {
   id          String   @id @default(cuid())
   title       String
   description String?
@@ -55,22 +54,22 @@ model Ticket {
 
   users User[]
 
-  @@map("tickets")
+  @@map("cards")
 }
 
 model User {
   id            String    @id @default(cuid())
+  cardId        String?   @map("card_id")
   name          String?
   email         String?   @unique
   emailVerified DateTime? // next-auth requires camelCase
   image         String?
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @updatedAt @map("updated_at")
-  ticketId      String?   @map("ticket_id")
 
   accounts Account[]
   sessions Session[]
-  ticket   Ticket?   @relation(fields: [ticketId], references: [id])
+  card     Card?     @relation(fields: [cardId], references: [id])
 
   @@map("users")
 }

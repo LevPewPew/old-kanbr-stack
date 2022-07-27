@@ -5,19 +5,19 @@ import prisma from 'clients/prisma';
 import { trpc } from 'utils/trpc';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const deck = await prisma.ticket.findMany();
+  const deck = await prisma.card.findMany();
 
   return { props: { deck } };
 };
 
-interface TicketProps {
+interface CardProps {
   id: string;
   title: string;
   description: string;
 }
 
 interface Props {
-  deck: TicketProps[];
+  deck: CardProps[];
 }
 
 function Deck(props: Props) {
@@ -31,10 +31,10 @@ function Deck(props: Props) {
       <div className="page">
         <h1>{hello.data.greeting}</h1>
         <main>
-          {props.deck.map((ticket) => (
-            <div key={ticket.id} className="post">
-              <h2>{ticket.title}</h2>
-              <p>{ticket.description}</p>
+          {props.deck.map((card) => (
+            <div key={card.id} className="post">
+              <h2>{card.title}</h2>
+              <p>{card.description}</p>
             </div>
           ))}
         </main>

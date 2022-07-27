@@ -19,14 +19,14 @@ export const appRouter = trpc
       };
     },
   })
-  .mutation('createTicket', {
+  .mutation('createCard', {
     input: z.object({ title: z.string(), description: z.string().nullish() }),
     async resolve(req) {
-      const ticket = await prisma.ticket.create({
+      const card = await prisma.card.create({
         data: req.input,
       });
 
-      return ticket;
+      return card;
     },
   });
 

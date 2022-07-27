@@ -7,8 +7,8 @@ import { useForm } from 'react-hook-form';
 import { FormErrorMessage, FormLabel, FormControl, Input, Button } from '@chakra-ui/react';
 import { trpc } from 'utils/trpc';
 
-export default function CreateTicketForm() {
-  const createTicket = trpc.useMutation(['createTicket', { text: 'Mr. Foo' }]);
+export default function CreateCardForm() {
+  const createCard = trpc.useMutation(['createCard']);
 
   const {
     handleSubmit,
@@ -17,14 +17,14 @@ export default function CreateTicketForm() {
   } = useForm();
 
   function onSubmit(values) {
-    createTicket.mutate(values);
+    createCard.mutate(values);
   }
 
   useEffect(() => {
-    if (createTicket.isSuccess) {
+    if (createCard.isSuccess) {
       Router.push('/deck');
     }
-  }, [createTicket.isSuccess]);
+  }, [createCard.isSuccess]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -39,12 +39,7 @@ export default function CreateTicketForm() {
         />
         <FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
         <FormLabel htmlFor="description">Description</FormLabel>
-        <Input
-          id="description"
-          placeholder="description"
-          // FIXME: change to not required
-          {...register('description')}
-        />
+        <Input id="description" placeholder="description" {...register('description')} />
         <FormErrorMessage>{errors.description && errors.description.message}</FormErrorMessage>
       </FormControl>
       <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
