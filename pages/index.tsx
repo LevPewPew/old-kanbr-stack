@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from 'components/Layout';
 
-const Home: React.FC = () => {
+function Home() {
   return (
     <Layout>
       <div className="page">
@@ -9,6 +9,6 @@ const Home: React.FC = () => {
       </div>
     </Layout>
   );
-};
+}
 
 export default Home;

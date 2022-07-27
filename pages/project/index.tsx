@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Project: React.FC = () => {
+function Project() {
   return <h1>PROJECT PAGE PLACEHOLDER</h1>;
-};
+}
 
 export default Project;

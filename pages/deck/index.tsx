@@ -20,7 +20,7 @@ interface Props {
   deck: TicketProps[];
 }
 
-const Deck: React.FC<Props> = (props) => {
+function Deck(props: Props) {
   const hello = trpc.useQuery(['hello', { text: 'Mr. Foo' }]);
   if (!hello.data) {
     return <div>Loading...</div>;
@@ -41,6 +41,6 @@ const Deck: React.FC<Props> = (props) => {
       </div>
     </Layout>
   );
-};
+}
 
 export default Deck;
