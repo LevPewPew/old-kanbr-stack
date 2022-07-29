@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import Router from 'next/router';
 import { FormErrorMessage, FormLabel, FormControl, Input, Button } from '@chakra-ui/react';
 import { z } from 'zod';
-import { pickBy } from 'lodash';
 import { trpc } from 'utils/trpc';
 import { useZodForm } from 'hooks';
+import { sanitizeReactHookFormValues } from 'helpers';
 
 export const cardFormSchema = z.object({
   title: z.string().min(1, { message: 'Required' }),
@@ -13,7 +13,7 @@ export const cardFormSchema = z.object({
 
 type CardFormSchema = z.infer<typeof cardFormSchema>;
 
-// TODO add editing
+// TODO add editing and defaultValues prop with defaults (default defaults!!! lol)
 export default function CardForm() {
   const createCard = trpc.useMutation(['createCard']);
   const {
@@ -29,16 +29,7 @@ export default function CardForm() {
   });
 
   function onSubmit(values: CardFormSchema) {
-    console.log({ values });
-    const sanitizedValues = pickBy(values, (value) => {
-      const isEmptyString = typeof value === 'string' && value.length === 0;
-
-      return !isEmptyString;
-      /*  FIXME probably better way to do this than assertion
-      maybe write my own wrapper util method that takes a generic?
-      + remove the console logs */
-    }) as CardFormSchema;
-    console.log({ sanitizedValues });
+    const sanitizedValues = sanitizeReactHookFormValues(values);
     createCard.mutate(sanitizedValues);
   }
 
