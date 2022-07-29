@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import { Heading, Text } from '@chakra-ui/react';
 import { PageLayout } from 'components';
 import prisma from 'clients/prisma';
-import { trpc } from 'utils/trpc';
+import { trpc } from 'utils';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const deck = await prisma.card.findMany();

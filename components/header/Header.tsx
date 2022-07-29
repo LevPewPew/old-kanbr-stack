@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 
-const Header: React.FC = () => {
+/* FIXME clean up Vercel project tutorial tech debt */
+export default function Header() {
   const router = useRouter();
   const isActive: (pathname: string) => boolean = (pathname) => router.pathname === pathname;
 
@@ -213,8 +214,5 @@ const Header: React.FC = () => {
       `}</style>
     </nav>
   );
-};
+}
 
-export default Header;
-
-// FIXME: force dev watcher window to fail if there are TS errors

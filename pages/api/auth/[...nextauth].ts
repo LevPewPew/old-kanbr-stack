@@ -15,6 +15,7 @@ const options = {
   secret: process.env.NEXTAUTH_SECRET,
 };
 
+// TODO convert to use tRPC pattern
 export default function authHandler(req, res): NextApiHandler {
   return NextAuth(req, res, options);
 }

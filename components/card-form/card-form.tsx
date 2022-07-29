@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Router from 'next/router';
 import { FormErrorMessage, FormLabel, FormControl, Input, Button } from '@chakra-ui/react';
 import { z } from 'zod';
-import { trpc } from 'utils/trpc';
+import { trpc } from 'utils';
 import { useZodForm } from 'hooks';
 import { sanitizeReactHookFormValues } from 'helpers';
 

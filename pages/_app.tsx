@@ -17,7 +17,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 };
 
 export default withTRPC<AppRouter>({
-  config({ ctx }) {
+  config() {
     const url =
       process.env.NODE_ENV === 'production'
         ? `${process.env.VERCEL_URL}/api/trpc`
@@ -37,3 +37,5 @@ export default withTRPC<AppRouter>({
   */
   ssr: false,
 })(App);
+
+// FIXME: force dev watcher window to fail if there are TS errors
