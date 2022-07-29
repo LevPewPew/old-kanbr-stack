@@ -1,1 +1,1 @@
-export { default } from './useZodForm';
+export { default } from './use-zod-form';
