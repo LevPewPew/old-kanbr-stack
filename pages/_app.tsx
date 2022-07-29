@@ -28,5 +28,12 @@ export default withTRPC<AppRouter>({
       queryClientConfig: { defaultOptions: { queries: { staleTime: 120 } } },
     };
   },
+  /* SSR false due to this (currently) unresolved issue
+  https://github.com/trpc/trpc/issues/596 
+  
+  Will still use getServerSideProps props where the pattern is "expected" as if
+  it is working as intended. This is to minimize tech debt if issue is resolved
+  in future we can just flip this flag. Also helps developers with mental models.
+  */
   ssr: false,
 })(App);

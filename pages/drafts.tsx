@@ -5,9 +5,6 @@ import { PageLayout } from 'components';
 import Post, { PostProps } from 'components/Post';
 import prisma from 'clients/prisma';
 
-// FIXME while setting up this project, even though tRPC has ssr as false, this should still work from my understanding?
-// it will just do it client side...
-// remove once moving over to fetching my actual models
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession({ req });
   if (!session?.user) {
