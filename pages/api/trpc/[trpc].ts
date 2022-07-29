@@ -2,11 +2,9 @@ import * as trpc from '@trpc/server';
 import * as trpcNext from '@trpc/server/adapters/next';
 import { z } from 'zod';
 import prisma from 'clients/prisma';
-import { createCardSchema } from 'utils/zod-schemas';
+import { createCardFormSchema } from 'components/create-card-form';
 
 /* TODO: split up functions to be grouped by model and import here into root */
-
-// FIXME is it possible to infer or build a validation schema, or part of, from PrismaClient model???
 
 export const appRouter = trpc
   .router()
@@ -23,7 +21,7 @@ export const appRouter = trpc
     },
   })
   .mutation('createCard', {
-    input: createCardSchema,
+    input: createCardFormSchema,
     async resolve(req) {
       const card = await prisma.card.create({
         data: req.input,

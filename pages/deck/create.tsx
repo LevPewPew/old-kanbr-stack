@@ -1,15 +1,15 @@
 import React from 'react';
-import Layout from 'components/Layout';
-import CreateCardForm from 'components/create-card-form';
+import { PageLayout } from 'components';
+import { CreateCardForm } from 'components';
 
 interface Props {}
 
 export default function CreateCard(props: Props) {
   return (
-    <Layout>
+    <PageLayout>
       <div className="page">
         <CreateCardForm />
       </div>
-    </Layout>
+    </PageLayout>
   );
 }

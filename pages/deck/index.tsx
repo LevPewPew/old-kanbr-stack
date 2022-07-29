@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import { Heading, Text } from '@chakra-ui/react';
-import Layout from 'components/Layout';
+import { PageLayout } from 'components';
 import prisma from 'clients/prisma';
 import { trpc } from 'utils/trpc';
 
@@ -28,7 +28,7 @@ function Deck(props: Props) {
   }
 
   return (
-    <Layout>
+    <PageLayout>
       <div className="page">
         <h1>{hello.data.greeting}</h1>
         <main>
@@ -40,7 +40,7 @@ function Deck(props: Props) {
           ))}
         </main>
       </div>
-    </Layout>
+    </PageLayout>
   );
 }
 

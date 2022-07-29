@@ -2,7 +2,7 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import ReactMarkdown from 'react-markdown';
 import Router from 'next/router';
-import Layout from 'components/Layout';
+import { PageLayout } from 'components';
 import { PostProps } from 'components/Post';
 import { useSession } from 'next-auth/react';
 import prisma from 'clients/prisma';
@@ -51,7 +51,7 @@ const Post: React.FC<PostProps> = (props) => {
   }
 
   return (
-    <Layout>
+    <PageLayout>
       <div>
         <h2>{title}</h2>
         <p>By {props?.author?.name || 'Unknown author'}</p>
@@ -84,7 +84,7 @@ const Post: React.FC<PostProps> = (props) => {
           margin-left: 1rem;
         }
       `}</style>
-    </Layout>
+    </PageLayout>
   );
 };
 

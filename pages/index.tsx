@@ -1,13 +1,13 @@
 import React from 'react';
-import Layout from 'components/Layout';
+import { PageLayout } from 'components';
 
 function Home() {
   return (
-    <Layout>
+    <PageLayout>
       <div className="page">
         <h1>HOME PAGE PLACEHOLDER</h1>
       </div>
-    </Layout>
+    </PageLayout>
   );
 }
 
