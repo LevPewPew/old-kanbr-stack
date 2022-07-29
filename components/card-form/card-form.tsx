@@ -11,7 +11,7 @@ export const cardFormSchema = z.object({
   description: z.string().nullish(),
 });
 
-type Schema = z.infer<typeof cardFormSchema>;
+type CardFormSchema = z.infer<typeof cardFormSchema>;
 
 // TODO add editing
 export default function CardForm() {
@@ -28,7 +28,7 @@ export default function CardForm() {
     },
   });
 
-  function onSubmit(values: Schema) {
+  function onSubmit(values: CardFormSchema) {
     console.log({ values });
     const sanitizedValues = pickBy(values, (value) => {
       const isEmptyString = typeof value === 'string' && value.length === 0;
@@ -37,7 +37,7 @@ export default function CardForm() {
       /*  FIXME probably better way to do this than assertion
       maybe write my own wrapper util method that takes a generic?
       + remove the console logs */
-    }) as Schema;
+    }) as CardFormSchema;
     console.log({ sanitizedValues });
     createCard.mutate(sanitizedValues);
   }
