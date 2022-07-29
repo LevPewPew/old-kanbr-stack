@@ -1,14 +1,12 @@
 import React from 'react';
 import { PageLayout } from 'components';
-import { CreateCardForm } from 'components';
+import { CardForm } from 'components';
 
-interface Props {}
-
-export default function CreateCard(props: Props) {
+export default function CreateCard() {
   return (
     <PageLayout>
       <div className="page">
-        <CreateCardForm />
+        <CardForm />
       </div>
     </PageLayout>
   );

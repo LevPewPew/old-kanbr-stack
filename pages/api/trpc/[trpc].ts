@@ -2,7 +2,7 @@ import * as trpc from '@trpc/server';
 import * as trpcNext from '@trpc/server/adapters/next';
 import { z } from 'zod';
 import prisma from 'clients/prisma';
-import { createCardFormSchema } from 'components/create-card-form';
+import { cardFormSchema } from 'components/card-form';
 
 /* TODO: split up functions to be grouped by model and import here into root */
 
@@ -21,7 +21,7 @@ export const appRouter = trpc
     },
   })
   .mutation('createCard', {
-    input: createCardFormSchema,
+    input: cardFormSchema,
     async resolve(req) {
       const card = await prisma.card.create({
         data: req.input,

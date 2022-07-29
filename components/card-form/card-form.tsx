@@ -6,21 +6,22 @@ import { pickBy } from 'lodash';
 import { trpc } from 'utils/trpc';
 import { useZodForm } from 'hooks';
 
-export const createCardFormSchema = z.object({
+export const cardFormSchema = z.object({
   title: z.string().min(1, { message: 'Required' }),
   description: z.string().nullish(),
 });
 
-type Schema = z.infer<typeof createCardFormSchema>;
+type Schema = z.infer<typeof cardFormSchema>;
 
-export default function CreateCardForm() {
+// TODO add editing
+export default function CardForm() {
   const createCard = trpc.useMutation(['createCard']);
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
   } = useZodForm({
-    schema: createCardFormSchema,
+    schema: cardFormSchema,
     defaultValues: {
       title: '',
       description: '',
