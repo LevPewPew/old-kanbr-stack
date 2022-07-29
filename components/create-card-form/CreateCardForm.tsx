@@ -15,7 +15,6 @@ type Schema = z.infer<typeof createCardFormSchema>;
 
 export default function CreateCardForm() {
   const createCard = trpc.useMutation(['createCard']);
-
   const {
     handleSubmit,
     register,
@@ -48,17 +47,17 @@ export default function CreateCardForm() {
     }
   }, [createCard.isSuccess]);
 
-  // FIXME all fields turn red when error in only one field
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl isInvalid={Boolean(errors.title || errors.description)}>
+      <FormControl isInvalid={Boolean(errors.title)}>
         <FormLabel htmlFor="title">Title</FormLabel>
         <Input id="title" placeholder="title" {...register('title')} />
-        <FormErrorMessage>{errors.title?.message}</FormErrorMessage>
-        {errors.title?.message && <p>{errors.title?.message}</p>}
+        {errors.title && <FormErrorMessage>{errors.title.message}</FormErrorMessage>}
+      </FormControl>
+      <FormControl isInvalid={Boolean(errors.description)}>
         <FormLabel htmlFor="description">Description</FormLabel>
         <Input id="description" placeholder="description" {...register('description')} />
-        <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
+        {errors.description && <FormErrorMessage>{errors.description.message}</FormErrorMessage>}
       </FormControl>
       <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
         Submit
