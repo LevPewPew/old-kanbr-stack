@@ -1,9 +1,13 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import { Heading, Text } from '@chakra-ui/react';
-import { PageLayout } from '~/components';
+import { Card as CardModel } from '@prisma/client';
+import { Card, PageLayout } from '~/components';
 import prisma from '~/clients/prisma';
 import { trpc } from '~/utils';
+
+interface ServerSideProps {
+  deck: CardModel[];
+}
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const deck = await prisma.card.findMany();
@@ -11,17 +15,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return { props: { deck } };
 };
 
-interface CardProps {
-  id: string;
-  title: string;
-  description: string;
-}
-
-interface Props {
-  deck: CardProps[];
-}
-
-function Deck(props: Props) {
+function Deck(props: ServerSideProps) {
   const hello = trpc.useQuery(['hello', { text: 'Mr. Foo' }]);
   if (!hello.data) {
     return <div>Loading...</div>;
@@ -32,12 +26,9 @@ function Deck(props: Props) {
       <div className="page">
         <h1>{hello.data.greeting}</h1>
         <main>
-          {props.deck.map((card) => (
-            <div key={card.id}>
-              <Heading as="h2">{card.title}</Heading>
-              <Text>{card.description}</Text>
-            </div>
-          ))}
+          {props.deck.map((card) => {
+            return <Card key={card.id} title={card.title} description={card.description} />;
+          })}
         </main>
       </div>
     </PageLayout>
