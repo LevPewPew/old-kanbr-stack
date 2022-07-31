@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageLayout } from '~/components';
 
-function Home() {
+export default function HomePage() {
   return (
     <PageLayout>
       <div className="page">
@@ -10,5 +10,3 @@ function Home() {
     </PageLayout>
   );
 }
-
-export default Home;

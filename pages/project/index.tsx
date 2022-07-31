@@ -1,7 +1,5 @@
 import React from 'react';
 
-function Project() {
+export default function ProjectPage() {
   return <h1>PROJECT PAGE PLACEHOLDER</h1>;
 }
-
-export default Project;
