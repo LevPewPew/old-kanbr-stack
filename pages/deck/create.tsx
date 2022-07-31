@@ -1,6 +1,6 @@
 import React from 'react';
-import { PageLayout } from 'components';
-import { CardForm } from 'components';
+import { PageLayout } from '~/components';
+import { CardForm } from '~/components';
 
 export default function CreateCard() {
   return (

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Container } from '@chakra-ui/react';
-import { Header } from 'components';
+import { Header } from '~/components';
 
 type Props = {
   children: ReactNode;

@@ -2,9 +2,7 @@ import { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 import { withTRPC } from '@trpc/next';
 import { ChakraProvider } from '@chakra-ui/react';
-import { AppRouter } from './api/trpc/[trpc]';
-
-// TODO: add an alias to absolute imports to make clear it is from this/self
+import { AppRouter } from '~/pages/api/trpc/[trpc]';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (

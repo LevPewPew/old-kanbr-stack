@@ -1,8 +1,8 @@
 import * as trpc from '@trpc/server';
 import * as trpcNext from '@trpc/server/adapters/next';
 import { z } from 'zod';
-import prisma from 'clients/prisma';
-import { cardFormSchema } from 'components/card-form';
+import prisma from '~/clients/prisma';
+import { cardFormSchema } from '~/components/card-form';
 
 /* TODO: split up functions to be grouped by model and import here into root */
 

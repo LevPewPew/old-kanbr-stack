@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageLayout } from 'components';
+import { PageLayout } from '~/components';
 
 function Home() {
   return (
