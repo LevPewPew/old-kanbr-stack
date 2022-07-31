@@ -122,13 +122,23 @@ export default function Header() {
             Home
           </a>
         </Link>
-        <Link href="/deck">
-          <a className="bold" data-active={isActive('/deck')}>
-            Deck
+        <Link href="/projects">
+          <a className="bold" data-active={isActive('/projects')}>
+            Projects
           </a>
         </Link>
-        <Link href="/deck/create">
-          <a className="bold" data-active={isActive('/deck/create')}>
+        <Link href="/projects/decks">
+          <a className="bold" data-active={isActive('/projects/decks')}>
+            Decks
+          </a>
+        </Link>
+        <Link href="/projects/decks/cards">
+          <a className="bold" data-active={isActive('/projects/decks/cards')}>
+            Cards
+          </a>
+        </Link>
+        <Link href="/projects/decks/cards/create">
+          <a className="bold" data-active={isActive('/projects/decks/cards/create')}>
             New Card
           </a>
         </Link>
@@ -215,4 +225,3 @@ export default function Header() {
     </nav>
   );
 }
-

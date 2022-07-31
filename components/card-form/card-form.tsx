@@ -35,7 +35,7 @@ export default function CardForm() {
 
   useEffect(() => {
     if (createCard.isSuccess) {
-      Router.push('/deck');
+      Router.push('/projects/decks/cards');
     }
   }, [createCard.isSuccess]);
 
