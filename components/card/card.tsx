@@ -1,6 +1,5 @@
 import React from 'react';
 import { Heading, Text } from '@chakra-ui/react';
-import { nullish } from '~/types/general';
 
 export interface Props {
   title: string;
