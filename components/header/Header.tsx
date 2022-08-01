@@ -4,212 +4,216 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 
-/* FIXME clean up Vercel project tutorial tech debt */
-export default function Header() {
-  const router = useRouter();
-  const isActive: (pathname: string) => boolean = (pathname) => router.pathname === pathname;
+interface Props {
+  left: React.ReactNode;
+  right: React.ReactNode;
+}
 
-  const { data: session, status } = useSession();
+export default function Header({ left, right }: Props) {
+  // const router = useRouter();
+  // const isActive: (pathname: string) => boolean = (pathname) => router.pathname === pathname;
 
-  let left = (
-    <div className="left">
-      <Link href="/">
-        <a className="bold" data-active={isActive('/')}>
-          Home
-        </a>
-      </Link>
-      <style jsx>{`
-        .bold {
-          font-weight: bold;
-        }
+  // const { data: session, status } = useSession();
 
-        a {
-          text-decoration: none;
-          color: var(--geist-foreground);
-          display: inline-block;
-        }
+  // let left = (
+  //   <div className="left">
+  //     <Link href="/">
+  //       <a className="bold" data-active={isActive('/')}>
+  //         Home
+  //       </a>
+  //     </Link>
+  //     <style jsx>{`
+  //       .bold {
+  //         font-weight: bold;
+  //       }
 
-        .left a[data-active='true'] {
-          color: gray;
-        }
+  //       a {
+  //         text-decoration: none;
+  //         color: var(--geist-foreground);
+  //         display: inline-block;
+  //       }
 
-        a + a {
-          margin-left: 1rem;
-        }
-      `}</style>
-    </div>
-  );
+  //       .left a[data-active='true'] {
+  //         color: gray;
+  //       }
 
-  let right = null;
+  //       a + a {
+  //         margin-left: 1rem;
+  //       }
+  //     `}</style>
+  //   </div>
+  // );
 
-  if (status === 'loading') {
-    left = (
-      <div className="left">
-        <Link href="/">
-          <a className="bold" data-active={isActive('/')}>
-            Feed
-          </a>
-        </Link>
-        <style jsx>{`
-          .bold {
-            font-weight: bold;
-          }
+  // let right = null;
 
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
+  // if (status === 'loading') {
+  //   left = (
+  //     <div className="left">
+  //       <Link href="/">
+  //         <a className="bold" data-active={isActive('/')}>
+  //           Feed
+  //         </a>
+  //       </Link>
+  //       <style jsx>{`
+  //         .bold {
+  //           font-weight: bold;
+  //         }
 
-          .left a[data-active='true'] {
-            color: gray;
-          }
+  //         a {
+  //           text-decoration: none;
+  //           color: var(--geist-foreground);
+  //           display: inline-block;
+  //         }
 
-          a + a {
-            margin-left: 1rem;
-          }
-        `}</style>
-      </div>
-    );
-    right = (
-      <div className="right">
-        <p>Validating session ...</p>
-        <style jsx>{`
-          .right {
-            margin-left: auto;
-          }
-        `}</style>
-      </div>
-    );
-  }
+  //         .left a[data-active='true'] {
+  //           color: gray;
+  //         }
 
-  if (!session) {
-    right = (
-      <div className="right">
-        <Link href="/api/auth/signin">
-          <a data-active={isActive('/signup')}>Log in</a>
-        </Link>
-        <style jsx>{`
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
+  //         a + a {
+  //           margin-left: 1rem;
+  //         }
+  //       `}</style>
+  //     </div>
+  //   );
+  //   right = (
+  //     <div className="right">
+  //       <p>Validating session ...</p>
+  //       <style jsx>{`
+  //         .right {
+  //           margin-left: auto;
+  //         }
+  //       `}</style>
+  //     </div>
+  //   );
+  // }
 
-          a + a {
-            margin-left: 1rem;
-          }
+  // if (!session) {
+  //   right = (
+  //     <div className="right">
+  //       <Link href="/api/auth/signin">
+  //         <a data-active={isActive('/signup')}>Log in</a>
+  //       </Link>
+  //       <style jsx>{`
+  //         a {
+  //           text-decoration: none;
+  //           color: var(--geist-foreground);
+  //           display: inline-block;
+  //         }
 
-          .right {
-            margin-left: auto;
-          }
+  //         a + a {
+  //           margin-left: 1rem;
+  //         }
 
-          .right a {
-            border: 1px solid var(--geist-foreground);
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
-          }
-        `}</style>
-      </div>
-    );
-  }
+  //         .right {
+  //           margin-left: auto;
+  //         }
 
-  if (session) {
-    left = (
-      <div className="left">
-        <Link href="/">
-          <a className="bold" data-active={isActive('/')}>
-            Home
-          </a>
-        </Link>
-        <Link href="/projects">
-          <a className="bold" data-active={isActive('/projects')}>
-            Projects
-          </a>
-        </Link>
-        <Link href="/projects/decks">
-          <a className="bold" data-active={isActive('/projects/decks')}>
-            Decks
-          </a>
-        </Link>
-        <Link href="/projects/decks/cards">
-          <a className="bold" data-active={isActive('/projects/decks/cards')}>
-            Cards
-          </a>
-        </Link>
-        <Link href="/projects/decks/cards/create">
-          <a className="bold" data-active={isActive('/projects/decks/cards/create')}>
-            New Card
-          </a>
-        </Link>
-        <style jsx>{`
-          .bold {
-            font-weight: bold;
-          }
+  //         .right a {
+  //           border: 1px solid var(--geist-foreground);
+  //           padding: 0.5rem 1rem;
+  //           border-radius: 3px;
+  //         }
+  //       `}</style>
+  //     </div>
+  //   );
+  // }
 
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
+  // if (session) {
+  //   left = (
+  //     <div className="left">
+  //       <Link href="/">
+  //         <a className="bold" data-active={isActive('/')}>
+  //           Home
+  //         </a>
+  //       </Link>
+  //       <Link href="/projects">
+  //         <a className="bold" data-active={isActive('/projects')}>
+  //           Projects
+  //         </a>
+  //       </Link>
+  //       <Link href="/projects/decks">
+  //         <a className="bold" data-active={isActive('/projects/decks')}>
+  //           Decks
+  //         </a>
+  //       </Link>
+  //       <Link href="/projects/decks/cards">
+  //         <a className="bold" data-active={isActive('/projects/decks/cards')}>
+  //           Cards
+  //         </a>
+  //       </Link>
+  //       <Link href="/projects/decks/cards/create">
+  //         <a className="bold" data-active={isActive('/projects/decks/cards/create')}>
+  //           New Card
+  //         </a>
+  //       </Link>
+  //       <style jsx>{`
+  //         .bold {
+  //           font-weight: bold;
+  //         }
 
-          .left a[data-active='true'] {
-            color: gray;
-          }
+  //         a {
+  //           text-decoration: none;
+  //           color: var(--geist-foreground);
+  //           display: inline-block;
+  //         }
 
-          a + a {
-            margin-left: 1rem;
-          }
-        `}</style>
-      </div>
-    );
-    right = (
-      <div className="right">
-        <p>
-          {session.user.name} ({session.user.email})
-        </p>
-        <Link href="/create">
-          <button>
-            <a>New post</a>
-          </button>
-        </Link>
-        <button onClick={() => signOut()}>
-          <a>Log out</a>
-        </button>
-        <style jsx>{`
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
+  //         .left a[data-active='true'] {
+  //           color: gray;
+  //         }
 
-          p {
-            display: inline-block;
-            font-size: 13px;
-            padding-right: 1rem;
-          }
+  //         a + a {
+  //           margin-left: 1rem;
+  //         }
+  //       `}</style>
+  //     </div>
+  //   );
+  //   right = (
+  //     <div className="right">
+  //       <p>
+  //         {session.user.name} ({session.user.email})
+  //       </p>
+  //       <Link href="/create">
+  //         <button>
+  //           <a>New post</a>
+  //         </button>
+  //       </Link>
+  //       <button onClick={() => signOut()}>
+  //         <a>Log out</a>
+  //       </button>
+  //       <style jsx>{`
+  //         a {
+  //           text-decoration: none;
+  //           color: var(--geist-foreground);
+  //           display: inline-block;
+  //         }
 
-          a + a {
-            margin-left: 1rem;
-          }
+  //         p {
+  //           display: inline-block;
+  //           font-size: 13px;
+  //           padding-right: 1rem;
+  //         }
 
-          .right {
-            margin-left: auto;
-          }
+  //         a + a {
+  //           margin-left: 1rem;
+  //         }
 
-          .right a {
-            border: 1px solid var(--geist-foreground);
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
-          }
+  //         .right {
+  //           margin-left: auto;
+  //         }
 
-          button {
-            border: none;
-          }
-        `}</style>
-      </div>
-    );
-  }
+  //         .right a {
+  //           border: 1px solid var(--geist-foreground);
+  //           padding: 0.5rem 1rem;
+  //           border-radius: 3px;
+  //         }
+
+  //         button {
+  //           border: none;
+  //         }
+  //       `}</style>
+  //     </div>
+  //   );
+  // }
 
   return (
     <nav>
@@ -225,3 +229,7 @@ export default function Header() {
     </nav>
   );
 }
+
+// LEFTOFF clean this nav file up major
+//
+// THEN create models and old school RESTish routing, including for lists and [id]s
