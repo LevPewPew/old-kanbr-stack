@@ -3,12 +3,14 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { isRouteActive } from '~/helpers';
+/* NEXT DRY this. comment that it is just the status union for useSession from next-auth */
+type SessionStatus = 'authenticated' | 'loading' | 'unauthenticated';
 
 interface LinkModel {
   id: string;
   text: string;
   href: string;
-  isSessionOnly: boolean;
+  displayStatus?: SessionStatus;
 }
 
 /* TODO get nav links from backend based on auth. Pass as server side props via
@@ -18,31 +20,30 @@ const links: LinkModel[] = [
     id: '1',
     text: 'Home',
     href: '/',
-    isSessionOnly: false,
   },
   {
     id: '1',
     text: 'Projects',
     href: '/',
-    isSessionOnly: true,
+    displayStatus: 'authenticated',
   },
   {
     id: '1',
     text: 'Decks',
     href: '/',
-    isSessionOnly: true,
+    displayStatus: 'authenticated',
   },
   {
     id: '1',
     text: 'Cards',
     href: '/',
-    isSessionOnly: true,
+    displayStatus: 'authenticated',
   },
   {
     id: '1',
     text: 'New Card',
     href: '/',
-    isSessionOnly: true,
+    displayStatus: 'authenticated',
   },
 ];
 
@@ -54,7 +55,7 @@ export default function LeftNavigation() {
     <>
       {links.map((link) => {
         const isLinkShown =
-          (link.isSessionOnly && sessionStatus === 'authenticated') || !link.isSessionOnly;
+          (link.displayStatus && sessionStatus === 'authenticated') || !link.displayStatus;
 
         return (
           <>
