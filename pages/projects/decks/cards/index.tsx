@@ -1,6 +1,7 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import { Card as CardModel } from '@prisma/client';
+import { Button, HStack } from '@chakra-ui/react';
 import { Card, Deck, PageLayout } from '~/components';
 import prisma from '~/clients/prisma';
 import { trpc } from '~/utils';
@@ -24,11 +25,15 @@ export default function DeckPage(props: ServerSideProps) {
   return (
     <PageLayout>
       <h1>{hello.data.greeting}</h1>
-      <Deck>
-        {props.deck.map((card) => {
-          return <Card key={card.id} title={card.title} description={card.description} />;
-        })}
-      </Deck>
+      <HStack spacing="4">
+        <Button colorScheme={'red'}>{'<- LEFT'}</Button>
+        <Deck>
+          {props.deck.map((card) => {
+            return <Card key={card.id} title={card.title} description={card.description} />;
+          })}
+        </Deck>
+        <Button colorScheme={'green'}>{'RIGHT ->'}</Button>
+      </HStack>
     </PageLayout>
   );
 }

@@ -94,7 +94,9 @@ export default function PageLayout(props: Props) {
           }
         })}
       />
-      <Container as="main">{props.children}</Container>
+      <Container as="main" maxWidth={'container.lg'}>
+        {props.children}
+      </Container>
     </div>
   );
 }
