@@ -24,6 +24,4 @@ export default function Header({ left, right }: Props) {
   );
 }
 
-// LEFTOFF clean this nav file up major
-//
-// THEN create models and old school RESTish routing, including for lists and [id]s
+// TODO create models and old school RESTish routing, including for lists and [id]s

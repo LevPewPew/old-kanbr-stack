@@ -1,10 +1,8 @@
 import React, { ReactNode } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import { Avatar, Container } from '@chakra-ui/react';
-import { Header } from '~/components';
-import { isRouteActive } from '~/helpers';
+import { Header, Link } from '~/components';
 
 type Props = {
   children: ReactNode;
@@ -71,28 +69,12 @@ export default function PageLayout(props: Props) {
       <Header
         left={leftLinks.map((link) => {
           if (link.displayStatus === sessionStatus) {
-            return (
-              // TODO DRY the Link and anchor into an opinionated link, with variant prop
-              <Link key={link.id} href={link.href}>
-                <a className="bold" data-active={isRouteActive(link.href, router)}>
-                  {link.text}
-                </a>
-              </Link>
-            );
+            return <Link id={link.id} href={link.href} text={link.text} router={router} />;
           }
         })}
         right={rightLinks.map((link) => {
           if (link.displayStatus === sessionStatus) {
-            return (
-              // TODO DRY the Link and anchor into an opinionated link, with variant prop
-              <>
-                <Link key={link.id} href={link.href}>
-                  <a className="bold" data-active={isRouteActive(link.href, router)}>
-                    {link.text}
-                  </a>
-                </Link>
-              </>
-            );
+            return <Link id={link.id} href={link.href} text={link.text} router={router} />;
           }
           if (sessionStatus === 'authenticated') {
             return (
