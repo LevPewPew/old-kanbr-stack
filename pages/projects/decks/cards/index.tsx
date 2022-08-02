@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { Card as CardModel } from '@prisma/client';
+import produce from 'immer';
 import { Button, HStack } from '@chakra-ui/react';
 import { Card, Deck, PageLayout } from '~/components';
 import prisma from '~/clients/prisma';
@@ -15,12 +16,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return { props: { cards } };
 };
-// TODO try out the immer library to achieve this instead
-function immutablePop(array: any[]) {
-  const newArray = [...array];
-  newArray.pop();
-  return newArray;
-}
 
 export default function CardsPage(props: ServerSideProps) {
   const [deck, setDeck] = useState<CardModel[]>([]);
@@ -28,7 +23,11 @@ export default function CardsPage(props: ServerSideProps) {
   const hello = trpc.useQuery(['hello', { text: 'Mr. Foo' }]);
 
   function removeCard() {
-    setDeck((state) => immutablePop(state));
+    setDeck(
+      produce((draft) => {
+        draft.pop();
+      }),
+    );
   }
 
   function handleLeftClick() {
