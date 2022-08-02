@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { Card as CardModel } from '@prisma/client';
 import { Button, HStack } from '@chakra-ui/react';
@@ -7,17 +7,24 @@ import prisma from '~/clients/prisma';
 import { trpc } from '~/utils';
 
 interface ServerSideProps {
-  deck: CardModel[];
+  cards: CardModel[];
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const deck = await prisma.card.findMany();
+  const cards = await prisma.card.findMany();
 
-  return { props: { deck } };
+  return { props: { cards } };
 };
 
 export default function DeckPage(props: ServerSideProps) {
+  const [deck, setDeck] = useState<CardModel[]>([]);
+
   const hello = trpc.useQuery(['hello', { text: 'Mr. Foo' }]);
+
+  useEffect(() => {
+    setDeck(props.cards);
+  }, [props.cards]);
+
   if (!hello.data) {
     return <div>Loading...</div>;
   }
@@ -28,7 +35,7 @@ export default function DeckPage(props: ServerSideProps) {
       <HStack spacing="4">
         <Button colorScheme={'red'}>{'<- LEFT'}</Button>
         <Deck>
-          {props.deck.map((card) => {
+          {deck.map((card) => {
             return <Card key={card.id} title={card.title} description={card.description} />;
           })}
         </Deck>
