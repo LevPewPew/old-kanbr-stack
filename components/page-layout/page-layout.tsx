@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
-import { Avatar, Container } from '@chakra-ui/react';
+import { Avatar, Button, Container } from '@chakra-ui/react';
 import { Header, Link } from '~/components';
 
 type Props = {
@@ -81,10 +81,10 @@ export default function PageLayout(props: Props) {
           if (sessionStatus === 'authenticated') {
             return (
               <>
-                {/* FIXME make this chakra component */}
-                <button onClick={() => signOut()}>
-                  <a>Log out</a>
-                </button>
+                {/* TODO convert to opinionated component so style can be controlled in one location */}
+                <Button colorScheme="teal" variant="ghost" onClick={() => signOut()}>
+                  Log out
+                </Button>
                 <Avatar size="sm" />
               </>
             );
