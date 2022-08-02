@@ -8,7 +8,7 @@ export interface Props {
 
 export default function Card({ title, description }: Props) {
   return (
-    <Box bg="orange.200" border="4px" borderColor="cyan.300" minH="48">
+    <Box bg="orange.200" border="4px" borderColor="orange.500" borderStyle="dashed" minH="48">
       <Heading as="h2">{title}</Heading>
       <Text>{description}</Text>
     </Box>

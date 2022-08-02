@@ -1,16 +1,30 @@
 import React, { ReactNode } from 'react';
-import { Box, Center } from '@chakra-ui/react';
+import { Center } from '@chakra-ui/react';
 
 export interface Props {
   children: ReactNode;
 }
 
+const childrenStyle = {
+  '& > *': {
+    position: 'absolute',
+  },
+};
+
 export default function Deck({ children }: Props) {
   return (
-    <Center bg="red.200">
-      <Box border="4px" borderColor="blue.400" borderStyle="dashed">
-        {children}
-      </Box>
+    <Center
+      bg="blue.200"
+      border="4px"
+      borderColor="blue.500"
+      borderStyle="dashed"
+      className="foo"
+      position={'relative'}
+      width="xl"
+      height="xl"
+      sx={childrenStyle}
+    >
+      {children}
     </Center>
   );
 }
