@@ -15,11 +15,29 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return { props: { cards } };
 };
+// TODO try out the immer library to achieve this instead
+function immutablePop(array: any[]) {
+  const newArray = [...array];
+  newArray.pop();
+  return newArray;
+}
 
 export default function CardsPage(props: ServerSideProps) {
   const [deck, setDeck] = useState<CardModel[]>([]);
 
   const hello = trpc.useQuery(['hello', { text: 'Mr. Foo' }]);
+
+  function removeCard() {
+    setDeck((state) => immutablePop(state));
+  }
+
+  function handleLeftClick() {
+    removeCard();
+  }
+
+  function handleRightClick() {
+    removeCard();
+  }
 
   useEffect(() => {
     setDeck(props.cards);
@@ -33,13 +51,17 @@ export default function CardsPage(props: ServerSideProps) {
     <PageLayout>
       <h1>{hello.data.greeting}</h1>
       <HStack spacing="4">
-        <Button colorScheme={'red'}>{'<- LEFT'}</Button>
+        <Button onClick={handleLeftClick} colorScheme={'red'}>
+          {'<- LEFT'}
+        </Button>
         <Deck>
           {deck.map((card) => {
             return <Card key={card.id} title={card.title} description={card.description} />;
           })}
         </Deck>
-        <Button colorScheme={'green'}>{'RIGHT ->'}</Button>
+        <Button onClick={handleRightClick} colorScheme={'green'}>
+          {'RIGHT ->'}
+        </Button>
       </HStack>
     </PageLayout>
   );

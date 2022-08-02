@@ -5,7 +5,8 @@ interface Props {
   left: ReactNode;
   right: ReactNode;
 }
-
+/* FIXME changing header to Header is doing that weird thing where it keeps reverting back.
+exactly the thing i wanted to avoid be enforcing kebab case (but seems i did it too late....) */
 export default function Header({ left, right }: Props) {
   return (
     <Flex as="nav" flexDirection="row" justify="space-between" paddingX="8" paddingY="4">
