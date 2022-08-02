@@ -12,9 +12,14 @@ interface ServerSideProps {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const cards = await prisma.card.findMany();
-  // LEFTOFF somehow get the users info, i think prisma provides an easier way through the client, so i don't have to do some joined query or whatever
-  const foo = cards.users;
+  const cards = await prisma.card.findMany({
+    include: {
+      users: true,
+    },
+  });
+
+  // LEFTOFF add this to the type expected in props
+  console.log({ cards });
 
   return { props: { cards } };
 };
