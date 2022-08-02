@@ -1,8 +1,4 @@
-// Header.tsx
 import React from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { signOut, useSession } from 'next-auth/react';
 import { Flex } from '@chakra-ui/react';
 
 interface Props {
