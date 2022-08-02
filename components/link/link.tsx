@@ -1,16 +1,20 @@
 import React from 'react';
 import NextLink from 'next/link';
-import { Button } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 import { isRouteActive } from '~/helpers';
 
 export default function Link({ id, href, text, router }: any) {
   return (
-    <Button colorScheme="teal" variant="link">
-      <NextLink key={id} href={href}>
-        <a className="bold" data-active={isRouteActive(href, router)}>
-          {text}
-        </a>
-      </NextLink>
-    </Button>
+    <Box
+      borderBottom="1px"
+      borderColor={isRouteActive(href, router) ? 'teal' : 'transparent'}
+      borderStyle="solid"
+    >
+      <Button colorScheme="teal" variant="link">
+        <NextLink key={id} href={href}>
+          <a>{text}</a>
+        </NextLink>
+      </Button>
+    </Box>
   );
 }

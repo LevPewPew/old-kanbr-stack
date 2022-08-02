@@ -81,6 +81,7 @@ export default function PageLayout(props: Props) {
           if (sessionStatus === 'authenticated') {
             return (
               <>
+                {/* FIXME make this chakra component */}
                 <button onClick={() => signOut()}>
                   <a>Log out</a>
                 </button>
