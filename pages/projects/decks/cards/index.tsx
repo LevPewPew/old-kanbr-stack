@@ -13,6 +13,8 @@ interface ServerSideProps {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const cards = await prisma.card.findMany();
+  // LEFTOFF somehow get the users info, i think prisma provides an easier way through the client, so i don't have to do some joined query or whatever
+  const foo = cards.users;
 
   return { props: { cards } };
 };
@@ -65,3 +67,7 @@ export default function CardsPage(props: ServerSideProps) {
     </PageLayout>
   );
 }
+
+/* TODO record a shuffled deck into the user (or account???) model have swipe 
+left and write update this record into a small deck. user completing a card 
+means deck reshuffles, ready for a new pick */
