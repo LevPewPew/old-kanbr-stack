@@ -23,16 +23,12 @@ export default function DeckPage(props: ServerSideProps) {
 
   return (
     <PageLayout>
-      <div className="page">
-        <h1>{hello.data.greeting}</h1>
-        <main>
-          <Deck>
-            {props.deck.map((card) => {
-              return <Card key={card.id} title={card.title} description={card.description} />;
-            })}
-          </Deck>
-        </main>
-      </div>
+      <h1>{hello.data.greeting}</h1>
+      <Deck>
+        {props.deck.map((card) => {
+          return <Card key={card.id} title={card.title} description={card.description} />;
+        })}
+      </Deck>
     </PageLayout>
   );
 }

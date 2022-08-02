@@ -94,7 +94,7 @@ export default function PageLayout(props: Props) {
           }
         })}
       />
-      <Container>{props.children}</Container>
+      <Container as="main">{props.children}</Container>
     </div>
   );
 }

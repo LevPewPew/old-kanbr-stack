@@ -19,3 +19,5 @@ export default function Deck({ children }: Props) {
     </Center>
   );
 }
+
+// LEFTOFF make deck click left or right
