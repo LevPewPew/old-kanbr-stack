@@ -18,10 +18,11 @@ export default function Card({ title, description }: Props) {
       border="4px"
       borderColor="orange.500"
       borderStyle="dashed"
+      padding="8"
       sx={cardSizeStyles}
     >
       <Heading as="h2">{title}</Heading>
-      <Text>{description}</Text>
+      <Text mt="2">{description}</Text>
     </Box>
   );
 }
