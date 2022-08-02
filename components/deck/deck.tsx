@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 export interface Props {
-  // children: React.ReactNode;
-  children: any;
+  children: ReactNode;
 }
 
 export default function Deck({ children }: Props) {
