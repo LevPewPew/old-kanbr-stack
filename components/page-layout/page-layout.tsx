@@ -17,6 +17,8 @@ interface LinkModel {
   displayStatus?: SessionStatus;
 }
 
+/* TODO links data should come from backend, based on auth */
+
 const leftLinks: LinkModel[] = [
   {
     id: '1',
