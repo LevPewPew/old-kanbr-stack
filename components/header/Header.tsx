@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Flex } from '@chakra-ui/react';
 
 interface Props {
-  left: React.ReactNode;
-  right: React.ReactNode;
+  left: ReactNode;
+  right: ReactNode;
 }
 
 export default function Header({ left, right }: Props) {
