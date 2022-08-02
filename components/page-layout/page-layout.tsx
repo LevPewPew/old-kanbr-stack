@@ -84,7 +84,7 @@ export default function PageLayout(props: Props) {
                 <button onClick={() => signOut()}>
                   <a>Log out</a>
                 </button>
-                <Avatar />
+                <Avatar size="sm" />
               </>
             );
           }

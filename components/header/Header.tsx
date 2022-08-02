@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Flex } from '@chakra-ui/react';
+import { Flex, HStack } from '@chakra-ui/react';
 
 interface Props {
   left: ReactNode;
@@ -8,19 +8,10 @@ interface Props {
 
 export default function Header({ left, right }: Props) {
   return (
-    <nav>
-      <Flex>
-        {left}
-        {right}
-      </Flex>
-      <style jsx>{`
-        nav {
-          display: flex;
-          padding: 2rem;
-          align-items: center;
-        }
-      `}</style>
-    </nav>
+    <Flex as="nav" flexDirection="row" justify="space-between" paddingX="8" paddingY="4">
+      <HStack spacing="4">{left}</HStack>
+      <HStack spacing="4">{right}</HStack>
+    </Flex>
   );
 }
 
