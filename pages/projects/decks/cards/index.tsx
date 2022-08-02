@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return { props: { cards } };
 };
 
-export default function DeckPage(props: ServerSideProps) {
+export default function CardsPage(props: ServerSideProps) {
   const [deck, setDeck] = useState<CardModel[]>([]);
 
   const hello = trpc.useQuery(['hello', { text: 'Mr. Foo' }]);
