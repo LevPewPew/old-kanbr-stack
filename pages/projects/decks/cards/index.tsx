@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return { props: { deck } };
 };
 
-function DeckPage(props: ServerSideProps) {
+export default function DeckPage(props: ServerSideProps) {
   const hello = trpc.useQuery(['hello', { text: 'Mr. Foo' }]);
   if (!hello.data) {
     return <div>Loading...</div>;
@@ -36,5 +36,3 @@ function DeckPage(props: ServerSideProps) {
     </PageLayout>
   );
 }
-
-export default DeckPage;
