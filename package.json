@@ -4,7 +4,7 @@
   "description": "be agile",
   "scripts": {
     "build": "next build",
-    "build:vercel": "prisma db push && next build",
+    "build:vercel": "prisma db push --accept-data-loss && next build",
     "dev": "next",
     "start": "next start",
     "lint": "next lint"
