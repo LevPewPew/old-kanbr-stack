@@ -7,7 +7,7 @@ type Status = 'READY' | 'IN_PROGRESS' | 'COMPLETE';
 interface Props {
   title: string;
   description: string | nullish;
-  assigned: { id: string; name: string }[];
+  users: { id: string; name: string }[];
   status: Status;
 }
 
@@ -16,7 +16,7 @@ export const cardSizeStyles = {
   height: '3xl',
 };
 
-export default function Card({ title, description, assigned, status }: Props) {
+export default function Card({ title, description, users, status }: Props) {
   return (
     <Box
       bg="orange.200"
@@ -30,7 +30,7 @@ export default function Card({ title, description, assigned, status }: Props) {
       <Text mt="2">{description}</Text>
       <Text mt="2">On it:</Text>
       {/* FIXME don't use index for key */}
-      {assigned.map((user, i) => (
+      {users.map((user, i) => (
         <div key={i}>
           <Text mt="2">{user.id}</Text>
           <Text mt="2">{user.name}</Text>
