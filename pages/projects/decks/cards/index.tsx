@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
-import { Card as CardModel } from '@prisma/client';
+import { Card as CardModel, User as UserModel } from '@prisma/client';
 import produce from 'immer';
 import { Button, HStack } from '@chakra-ui/react';
 import { Card, Deck, PageLayout } from '~/components';
 import prisma from '~/clients/prisma';
 import { trpc } from '~/utils';
 
-interface ServerSideProps {
-  cards: CardModel[];
-}
+type CardQueryResponse = (CardModel & {
+  users: Pick<UserModel, 'id' | 'name'>[];
+})[];
 
+interface ServerSideProps {
+  cards: CardQueryResponse;
+}
+// NEXT see if i can do an infer from this, like the zod schema infers, instead of hand mimicing the types
 export const getServerSideProps: GetServerSideProps = async () => {
   const cards = await prisma.card.findMany({
     include: {
-      users: true,
+      users: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
     },
   });
-
-  // LEFTOFF add this to the type expected in props
-  console.log({ cards });
 
   return { props: { cards } };
 };
 
 export default function CardsPage(props: ServerSideProps) {
-  const [deck, setDeck] = useState<CardModel[]>([]);
+  const [deck, setDeck] = useState<CardQueryResponse>([]);
 
   const hello = trpc.useQuery(['hello', { text: 'Mr. Foo' }]);
 
@@ -62,7 +68,17 @@ export default function CardsPage(props: ServerSideProps) {
         </Button>
         <Deck>
           {deck.map((card) => {
-            return <Card key={card.id} title={card.title} description={card.description} />;
+            /* NEXT change to an object with id and name. reflect this in Card props */
+            const userIds = card.users.map((user) => user.id);
+            return (
+              <Card
+                key={card.id}
+                title={card.title}
+                description={card.description}
+                status={card.status}
+                assigned={userIds}
+              />
+            );
           })}
         </Deck>
         <Button onClick={handleRightClick} colorScheme={'green'}>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
 
-// NEXT figure out a way to make prisma client the source of truth for this, preferably without having this component be aware snake case being used in the enum
-type Status = 'ready' | 'in-progress' | 'complete';
+// TODO figure out a way to make prisma client the source of truth for this, preferably without having this component be aware snake case being used in the enum
+type Status = 'READY' | 'IN_PROGRESS' | 'COMPLETE';
 
 interface Props {
   title: string;
@@ -28,7 +28,13 @@ export default function Card({ title, description, assigned, status }: Props) {
     >
       <Heading as="h2">{title}</Heading>
       <Text mt="2">{description}</Text>
-      <Text mt="2">On it: {assigned}</Text>
+      <Text mt="2">On it:</Text>
+      {/* FIXME don't use index for key */}
+      {assigned.map((user, i) => (
+        <Text key={i} mt="2">
+          {user}
+        </Text>
+      ))}
       <Text mt="2">Status: {status}</Text>
     </Box>
   );
