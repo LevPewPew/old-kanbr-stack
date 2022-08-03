@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
 
-// TODO figure out a way to make prisma client the source of truth for this, preferably without having this component be aware snake case being used in the enum
+// NEXT figure out a way to make prisma client the source of truth for this, preferably without having this component be aware snake case being used in the enum
 type Status = 'READY' | 'IN_PROGRESS' | 'COMPLETE';
 
 interface Props {

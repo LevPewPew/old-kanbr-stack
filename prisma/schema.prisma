@@ -67,8 +67,8 @@ model Card {
 model User {
   id            String    @id @default(cuid())
   cardId        String?   @map("card_id")
-  name          String?
-  email         String?   @unique
+  name          String
+  email         String    @unique
   emailVerified DateTime? // next-auth requires camelCase
   image         String?
   createdAt     DateTime  @default(now()) @map("created_at")
