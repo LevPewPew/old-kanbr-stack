@@ -70,7 +70,7 @@ export default function CardsPage(props: ServerSideProps) {
                 title={card.title}
                 description={card.description}
                 status={card.status}
-                users={card.users.map((user) => user.id)}
+                users={card.users}
               />
             );
           })}
