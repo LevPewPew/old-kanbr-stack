@@ -7,15 +7,7 @@ import { Card, Deck, PageLayout } from '~/components';
 import prisma from '~/clients/prisma';
 import { trpc } from '~/utils';
 
-type Status = 'READY' | 'IN_PROGRESS' | 'COMPLETE';
-
-type DeckState = {
-  id: string;
-  title: string;
-  description: string | nullish;
-  status: Status;
-  users: { id: string; name: string }[];
-}[];
+type DeckState = ServerSideProps['cards'];
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
