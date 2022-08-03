@@ -7,7 +7,7 @@ type Status = 'READY' | 'IN_PROGRESS' | 'COMPLETE';
 interface Props {
   title: string;
   description: string | nullish;
-  assigned: string[];
+  assigned: { id: string; name: string }[];
   status: Status;
 }
 
@@ -31,9 +31,10 @@ export default function Card({ title, description, assigned, status }: Props) {
       <Text mt="2">On it:</Text>
       {/* FIXME don't use index for key */}
       {assigned.map((user, i) => (
-        <Text key={i} mt="2">
-          {user}
-        </Text>
+        <div key={i}>
+          <Text mt="2">{user.id}</Text>
+          <Text mt="2">{user.name}</Text>
+        </div>
       ))}
       <Text mt="2">Status: {status}</Text>
     </Box>
