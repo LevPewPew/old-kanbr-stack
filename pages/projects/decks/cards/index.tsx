@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { InferGetServerSidePropsType, GetServerSideProps } from 'next';
-import { Card as CardModel, User as UserModel } from '@prisma/client';
 import produce from 'immer';
 import { Button, HStack } from '@chakra-ui/react';
 import { Card, Deck, PageLayout } from '~/components';
@@ -8,7 +7,6 @@ import prisma from '~/clients/prisma';
 import { trpc } from '~/utils';
 
 type DeckState = ServerSideProps['cards'];
-
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 export async function getServerSideProps() {

@@ -1,14 +1,12 @@
 import React from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
-
-// NEXT figure out a way to make prisma client the source of truth for this, preferably without having this component be aware snake case being used in the enum
-type Status = 'READY' | 'IN_PROGRESS' | 'COMPLETE';
+import { Card as CardModel } from '@prisma/client';
 
 interface Props {
   title: string;
   description: string | nullish;
   users: { id: string; name: string }[];
-  status: Status;
+  status: CardModel['status'];
 }
 
 export const cardSizeStyles = {

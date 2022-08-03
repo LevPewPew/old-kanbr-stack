@@ -44,7 +44,7 @@ model Session {
   @@map("sessions")
 }
 
-enum CardAssigned {
+enum CardStatus {
   READY
   IN_PROGRESS
   COMPLETE
@@ -52,12 +52,12 @@ enum CardAssigned {
 
 // TODO: create a project model, and have card belong to a project, required
 model Card {
-  id          String       @id @default(cuid())
+  id          String     @id @default(cuid())
   title       String
   description String?
-  status      CardAssigned @default(READY)
-  createdAt   DateTime     @default(now()) @map("created_at")
-  updatedAt   DateTime     @updatedAt @map("updated_at")
+  status      CardStatus @default(READY)
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
 
   users User[]
 
