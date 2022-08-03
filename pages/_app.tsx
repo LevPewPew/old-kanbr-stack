@@ -22,6 +22,10 @@ export default withTRPC<AppRouter>({
         ? `${process.env.VERCEL_URL}/api/trpc`
         : 'http://localhost:3000/api/trpc';
 
+    console.log({ url });
+    console.log('NODE_ENV: ', process.env.NODE_ENV);
+    console.log('VERCEL_URL: ', process.env.VERCEL_URL);
+
     return {
       url,
       transformer,
