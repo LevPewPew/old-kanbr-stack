@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
+import { capitalCase } from 'change-case';
 import { Card as CardModel } from '@prisma/client';
 
 interface Props {
@@ -34,7 +35,7 @@ export default function Card({ title, description, users, status }: Props) {
           <Text mt="2">{user.name}</Text>
         </div>
       ))}
-      <Text mt="2">Status: {status}</Text>
+      <Text mt="2">Status: {capitalCase(status)}</Text>
     </Box>
   );
 }
