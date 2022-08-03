@@ -35,5 +35,3 @@ export default withTRPC<AppRouter>({
   */
   ssr: false,
 })(App);
-
-// FIXME: force dev watcher window to fail if there are TS errors

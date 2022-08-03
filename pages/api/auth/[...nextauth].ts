@@ -16,6 +16,6 @@ const options = {
 };
 
 // TODO convert to use tRPC pattern
-export default function authHandler(req, res): NextApiHandler {
+export default function authHandler(req: any, res: any): NextApiHandler {
   return NextAuth(req, res, options);
 }
