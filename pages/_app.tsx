@@ -17,15 +17,8 @@ const App = ({ Component, pageProps }: AppProps) => {
 
 export default withTRPC<AppRouter>({
   config() {
-    const url =
-      process.env.NODE_ENV === 'production' ? `/api/trpc` : 'http://localhost:3000/api/trpc';
-
-    console.log({ url });
-    console.log('NODE_ENV: ', process.env.NODE_ENV);
-    console.log('VERCEL_URL: ', process.env.VERCEL_URL);
-
     return {
-      url,
+      url: '/api/trpc',
       transformer,
       queryClientConfig: { defaultOptions: { queries: { staleTime: 120 } } },
     };
