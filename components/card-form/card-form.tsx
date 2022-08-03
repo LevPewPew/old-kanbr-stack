@@ -15,7 +15,7 @@ type CardFormSchema = z.infer<typeof cardFormSchema>;
 
 // TODO add editing and defaultValues prop with defaults (default defaults!!! lol)
 export default function CardForm() {
-  const createCard = trpc.useMutation(['createCard']);
+  const createCard = trpc.useMutation(['card.create']);
   const {
     handleSubmit,
     register,

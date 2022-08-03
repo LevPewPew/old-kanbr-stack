@@ -3,6 +3,7 @@ import { SessionProvider } from 'next-auth/react';
 import { withTRPC } from '@trpc/next';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AppRouter } from '~/pages/api/trpc/[trpc]';
+import { transformer } from '~/utils/trpc';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -23,6 +24,7 @@ export default withTRPC<AppRouter>({
 
     return {
       url,
+      transformer,
       queryClientConfig: { defaultOptions: { queries: { staleTime: 120 } } },
     };
   },
