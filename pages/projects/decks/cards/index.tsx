@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { InferGetServerSidePropsType, GetServerSideProps } from 'next';
+import { InferGetServerSidePropsType } from 'next';
 import produce from 'immer';
 import { Button, HStack } from '@chakra-ui/react';
 import { Card, Deck, PageLayout } from '~/components';
