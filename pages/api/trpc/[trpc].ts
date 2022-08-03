@@ -37,3 +37,6 @@ export default trpcNext.createNextApiHandler({
   router: appRouter,
   createContext: () => null,
 });
+
+// LEFTOFF deployed trpc is busted, only for https://kanbr.vercel.app/projects/decks/cards route. fix.
+// it might be corrupted data or something? which is weird since i am just doing prisma db push.
