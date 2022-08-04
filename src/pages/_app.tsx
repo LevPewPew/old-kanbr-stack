@@ -5,7 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { AppRouter } from '~/pages/api/trpc/[trpc]';
 import { transformer } from '~/utils/trpc';
 
-const App = ({ Component, pageProps }: AppProps) => {
+function App({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
       <ChakraProvider>
@@ -13,7 +13,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       </ChakraProvider>
     </SessionProvider>
   );
-};
+}
 
 export default withTRPC<AppRouter>({
   config() {
