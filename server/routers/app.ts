@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import { createRouter } from '~/pages/api/trpc/[trpc]';
 import { cardFormSchema } from '~/components/card-form';
-// import prisma from '~/clients/prisma';
 
 /* TODO: split up functions to be grouped by model and import here into root */
 
@@ -30,8 +29,3 @@ export const appRouter = createRouter()
   });
 
 export type AppRouter = typeof appRouter;
-
-// export default trpcNext.createNextApiHandler({
-//   router: appRouter,
-//   createContext: () => null,
-// });
