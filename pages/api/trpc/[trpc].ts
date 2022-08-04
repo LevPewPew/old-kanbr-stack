@@ -6,10 +6,8 @@ import { appRouter as rootRouter } from 'server/routers/app';
 import { prisma } from '~/clients';
 
 /* NOTE: if needs be re-used for `getStaticProps()`, may need to change options
-object to be optional.
-like so: `opts?: trpcNext.CreateNextContextOptions`
-*/
-export const createContext = async ({ req, res }: trpcNext.CreateNextContextOptions) => {
+object to be optional. like so: `(options?: trpcNext.CreateNextContextOptions)` */
+export async function createContext({ req, res }: trpcNext.CreateNextContextOptions) {
   const session = await getSession({ req });
 
   console.log('createContext for user. Username: ', session?.user?.name ?? 'UNKNOWN');
@@ -20,7 +18,7 @@ export const createContext = async ({ req, res }: trpcNext.CreateNextContextOpti
     prisma,
     session,
   };
-};
+}
 
 export type Context = trpc.inferAsyncReturnType<typeof createContext>;
 
