@@ -10,7 +10,7 @@ object to be optional. like so: `(options?: trpcNext.CreateNextContextOptions)` 
 export async function createContext({ req, res }: trpcNext.CreateNextContextOptions) {
   const session = await getSession({ req });
 
-  console.log('createContext for user. Username: ', session?.user?.name ?? 'UNKNOWN');
+  console.log(`createContext for user. Username: ${session?.user?.name ?? 'UNKNOWN'}`);
 
   return {
     req,
