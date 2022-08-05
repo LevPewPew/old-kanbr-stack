@@ -1,8 +1,6 @@
 import * as trpc from '@trpc/server';
 import * as trpcNext from '@trpc/server/adapters/next';
 import { getSession } from 'next-auth/react';
-import superjson from 'superjson';
-import { appRouter as rootRouter } from 'server/routers/app';
 import { prisma } from '~/clients';
 
 /* NOTE: if needs be re-used for `getStaticProps()`, may need to change options

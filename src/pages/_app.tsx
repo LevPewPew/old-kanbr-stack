@@ -2,8 +2,8 @@ import { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 import { withTRPC } from '@trpc/next';
 import { ChakraProvider } from '@chakra-ui/react';
-import { AppRouter } from '~/pages/api/trpc/[trpc]';
-import { transformer } from '~/utils/trpc';
+import { AppRouter } from '~/server/routers/app';
+import { transformer } from '~/server/transformer';
 
 function App({ Component, pageProps }: AppProps) {
   return (

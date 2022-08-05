@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import Router from 'next/router';
 import { FormErrorMessage, FormLabel, FormControl, Input, Button } from '@chakra-ui/react';
 import { z } from 'zod';
-import { trpc } from '~/utils';
-import { useZodForm } from '~/hooks';
+import { useMutation, useZodForm } from '~/hooks';
 import { sanitizeReactHookFormValues } from '~/helpers';
 
 export const cardFormSchema = z.object({
@@ -15,7 +14,7 @@ type CardFormSchema = z.infer<typeof cardFormSchema>;
 
 // TODO add editing and defaultValues prop with defaults (default defaults!!! lol)
 export default function CardForm() {
-  const createCard = trpc.useMutation(['card.create']);
+  const createCard = useMutation(['card.create']);
   const {
     handleSubmit,
     register,

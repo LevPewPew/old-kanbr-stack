@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { InferGetServerSidePropsType } from 'next';
 import produce from 'immer';
+import prisma from '~/clients/prisma';
 import { Button, HStack } from '@chakra-ui/react';
 import { Card, Deck, PageLayout } from '~/components';
-import prisma from '~/clients/prisma';
-import { trpc } from '~/utils';
+import { useQuery } from '~/hooks';
 
 type DeckState = ServerSideProps['cards'];
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
@@ -27,7 +27,7 @@ export async function getServerSideProps() {
 export default function CardsPage(props: ServerSideProps) {
   const [deck, setDeck] = useState<DeckState>([]);
 
-  const hello = trpc.useQuery(['card.hello', { text: 'Mr. Foo' }]);
+  const hello = useQuery(['card.hello', { text: 'Mr. Foo' }]);
 
   function removeCard() {
     setDeck(
