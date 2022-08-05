@@ -4,27 +4,12 @@ import { getSession } from 'next-auth/react';
 import superjson from 'superjson';
 import { appRouter as rootRouter } from 'server/routers/app';
 import { prisma } from '~/clients';
-
-/* NOTE: if needs be re-used for `getStaticProps()`, may need to change options
-object to be optional. like so: `(options?: trpcNext.CreateNextContextOptions)` */
-export async function createContext({ req, res }: trpcNext.CreateNextContextOptions) {
-  const session = await getSession({ req });
-
-  console.log(`createContext for user. Username: ${session?.user?.name ?? 'UNKNOWN'}`);
-
-  return {
-    req,
-    res,
-    prisma,
-    session,
-  };
-}
-
-export type Context = trpc.inferAsyncReturnType<typeof createContext>;
+import { Context, createContext } from '~/server/context';
 
 export function createRouter() {
   return trpc.router<Context>();
 }
+
 // FIXME this should be a resources name not root
 const router = createRouter().transformer(superjson).merge('card.', rootRouter);
 
