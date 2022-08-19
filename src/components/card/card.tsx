@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Button, Box, Heading, Text } from '@chakra-ui/react';
 import { capitalCase } from 'change-case';
 import { Card as CardModel } from '@prisma/client';
 
@@ -36,6 +36,8 @@ export default function Card({ title, description, users, status }: Props) {
         </div>
       ))}
       <Text mt="2">Status: {capitalCase(status)}</Text>
+      {/* TODO actually add user to card */}
+      <Button onClick={() => alert("ADD USER TO CARD PLACEHOLDER")}>I&apos;m on it!</Button>
     </Box>
   );
 }
