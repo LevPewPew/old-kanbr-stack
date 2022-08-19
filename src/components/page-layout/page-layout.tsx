@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
-import { Avatar, Button, Container } from '@chakra-ui/react';
+import { Avatar, Button, Container, Text } from '@chakra-ui/react';
 import { Header, Link } from '~/components';
 
 type Props = {
@@ -63,33 +63,34 @@ const rightLinks: LinkModel[] = [
 /* FIXME make more composable by lifting left and right to props. This will
 allow pages to control what is in navigation */
 export default function PageLayout(props: Props) {
-  const { status: sessionStatus } = useSession();
+  const { status: userStatus, data: session } = useSession();
   const router = useRouter();
 
   return (
     <div>
       <Header
         left={leftLinks.map((link) => {
-          if (link.displayStatus === sessionStatus) {
+          if (link.displayStatus === userStatus) {
             return <Link id={link.id} href={link.href} text={link.text} router={router} />;
           }
         })}
         right={rightLinks.map((link) => {
-          if (link.displayStatus === sessionStatus) {
+          if (link.displayStatus === userStatus) {
             return <Link id={link.id} href={link.href} text={link.text} router={router} />;
           }
-          if (sessionStatus === 'authenticated') {
+          if (userStatus === 'authenticated') {
             return (
               <>
-                {/* TODO convert to opinionated component so style can be controlled in one location */}
+                <Text>{session.user?.name}</Text>
+                <Avatar size="sm" />
+                {/* TODO convert this and all Buttons to opinionated component so style can be controlled in one location */}
                 <Button colorScheme="teal" variant="ghost" onClick={() => signOut()}>
                   Log out
                 </Button>
-                <Avatar size="sm" />
               </>
             );
           }
-          if (sessionStatus === 'loading') {
+          if (userStatus === 'loading') {
             return <div>Checking authorization...</div>;
           }
         })}

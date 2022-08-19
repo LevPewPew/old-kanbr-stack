@@ -27,8 +27,6 @@ export async function getServerSideProps() {
 export default function CardsPage(props: ServerSideProps) {
   const [deck, setDeck] = useState<DeckState>([]);
 
-  const hello = useQuery(['card.hello', { text: 'Mr. Foo' }]);
-
   function removeCard() {
     setDeck(
       produce((draft) => {
@@ -49,13 +47,8 @@ export default function CardsPage(props: ServerSideProps) {
     setDeck(props.cards);
   }, [props.cards]);
 
-  if (!hello.data) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <PageLayout>
-      <h1>{hello.data.greeting}</h1>
       <HStack spacing="4">
         <Button onClick={handleLeftClick} colorScheme={'red'}>
           {'<- LEFT'}
