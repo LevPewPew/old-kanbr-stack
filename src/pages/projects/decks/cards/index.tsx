@@ -42,7 +42,7 @@ export default function CardsPage(props: ServerSideProps) {
 
   function handleRightClick() {
     removeCard();
-    /* FIXME: create proper error handling component. using error boundary etc */
+    /* LEFTOFF create proper error handling component. using error boundary etc */
     if (userId) {
       assignUserToCard.mutate({ cardId: topCard.id, userId: userId });
     }
