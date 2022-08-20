@@ -64,6 +64,9 @@ model Card {
   @@map("cards")
 }
 
+// FIXME 
+// next-auth expects name and email to be optional. try keep this model 
+// non-optional and modify next-auth type somehow
 model User {
   id            String    @id @default(cuid())
   cardId        String?   @map("card_id")

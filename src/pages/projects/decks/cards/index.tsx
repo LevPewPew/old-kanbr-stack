@@ -3,10 +3,12 @@ import { InferGetServerSidePropsType } from 'next';
 import produce from 'immer';
 import prisma from '~/clients/prisma';
 import { Button, HStack } from '@chakra-ui/react';
+import { useSession } from 'next-auth/react';
 import { Card, Deck, PageLayout } from '~/components';
+import { useMutation } from '~/hooks';
 
-type DeckState = ServerSideProps['cards'];
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
+type DeckState = ServerSideProps['cards'];
 
 export async function getServerSideProps() {
   const cards = await prisma.card.findMany({
@@ -25,6 +27,26 @@ export async function getServerSideProps() {
 
 export default function CardsPage(props: ServerSideProps) {
   const [deck, setDeck] = useState<DeckState>([]);
+  const assignUserToCard = useMutation(['users.assignToCard']);
+  const { data: session } = useSession();
+  const topCard = deck[deck.length - 1];
+  const userId = session?.user?.id;
+
+  useEffect(() => {
+    setDeck(props.cards);
+  }, [props.cards]);
+
+  function handleLeftClick() {
+    removeCard();
+  }
+
+  function handleRightClick() {
+    removeCard();
+    /* FIXME: create proper error handling component. using error boundary etc */
+    if (userId) {
+      assignUserToCard.mutate({ cardId: topCard.id, userId: userId });
+    }
+  }
 
   function removeCard() {
     setDeck(
@@ -33,18 +55,6 @@ export default function CardsPage(props: ServerSideProps) {
       }),
     );
   }
-
-  function handleLeftClick() {
-    removeCard();
-  }
-
-  function handleRightClick() {
-    removeCard();
-  }
-
-  useEffect(() => {
-    setDeck(props.cards);
-  }, [props.cards]);
 
   return (
     <PageLayout>

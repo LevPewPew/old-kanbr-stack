@@ -6,6 +6,8 @@ import { useMutation, useZodForm } from '~/hooks';
 import { sanitizeReactHookFormValues } from '~/helpers';
 import { Button } from '~/components';
 
+/* TODO have this in the server and get card-form to import it, 
+that way the schemas are all in one place */
 export const cardFormSchema = z.object({
   title: z.string().min(1, { message: 'Required' }),
   description: z.string().nullish(),

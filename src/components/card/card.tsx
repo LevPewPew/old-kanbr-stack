@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
 import { capitalCase } from 'change-case';
 import { Card as CardModel } from '@prisma/client';
-import { Button } from '~/components';
 
 interface Props {
   title: string;
@@ -37,11 +36,6 @@ export default function Card({ title, description, users, status }: Props) {
         </div>
       ))}
       <Text mt="2">Status: {capitalCase(status)}</Text>
-      {/* TODO actually add user to card */}
-      {/* TODO this it temp just to get DB and tRPC working in a basic way.
-      eventually this button will be remove because the swipe left right system
-      will be used to assign who is on it "in the background". */}
-      <Button onClick={() => alert('ADD USER TO CARD PLACEHOLDER')}>I&apos;m on it!</Button>
     </Box>
   );
 }
