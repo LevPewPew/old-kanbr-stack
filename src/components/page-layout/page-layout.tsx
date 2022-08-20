@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
-import { Avatar, Button, Container, Text } from '@chakra-ui/react';
-import { Header, Link } from '~/components';
+import { Avatar, Container, Text } from '@chakra-ui/react';
+import { Button, Header, Link } from '~/components';
 
 type Props = {
   children: ReactNode;
@@ -83,8 +83,7 @@ export default function PageLayout(props: Props) {
               <>
                 <Text>{session.user?.name}</Text>
                 <Avatar size="sm" />
-                {/* TODO convert this and all Buttons to opinionated component so style can be controlled in one location */}
-                <Button colorScheme="teal" variant="ghost" onClick={() => signOut()}>
+                <Button variant="ghost" onClick={() => signOut()}>
                   Log out
                 </Button>
               </>

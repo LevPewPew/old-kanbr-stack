@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import Router from 'next/router';
-import { FormErrorMessage, FormLabel, FormControl, Input, Button } from '@chakra-ui/react';
+import { FormErrorMessage, FormLabel, FormControl, Input } from '@chakra-ui/react';
 import { z } from 'zod';
 import { useMutation, useZodForm } from '~/hooks';
 import { sanitizeReactHookFormValues } from '~/helpers';
+import { Button } from '~/components';
 
 export const cardFormSchema = z.object({
   title: z.string().min(1, { message: 'Required' }),
@@ -50,7 +51,7 @@ export default function CardForm() {
         <Input id="description" placeholder="description" {...register('description')} />
         {errors.description && <FormErrorMessage>{errors.description.message}</FormErrorMessage>}
       </FormControl>
-      <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
+      <Button mt={4} isLoading={isSubmitting} type="submit">
         Submit
       </Button>
     </form>

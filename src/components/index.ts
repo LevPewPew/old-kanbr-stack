@@ -1,3 +1,4 @@
+export { default as Button } from './button';
 export { default as Card } from './card';
 export { default as CardForm } from './card-form';
 export { default as Deck } from './deck';

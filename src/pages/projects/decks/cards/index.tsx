@@ -4,7 +4,6 @@ import produce from 'immer';
 import prisma from '~/clients/prisma';
 import { Button, HStack } from '@chakra-ui/react';
 import { Card, Deck, PageLayout } from '~/components';
-import { useQuery } from '~/hooks';
 
 type DeckState = ServerSideProps['cards'];
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
