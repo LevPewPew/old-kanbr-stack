@@ -24,9 +24,9 @@ const options = {
   ],
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
-  /* These callbacks have been modified so that the user model id is included
-  when using useSession. This allows us to easily send the signed in user id to
-  via a json payload in a HTTP request */
+  /* The callback and session options have been modified so that the user model
+  id is included when using useSession. This allows us to easily send the signed
+  in user id to via a json payload in a HTTP request */
   callbacks: {
     session: async ({ session, token }: SessionCallbackParams) => {
       if (session?.user) {
