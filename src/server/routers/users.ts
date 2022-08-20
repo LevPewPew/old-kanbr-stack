@@ -31,4 +31,4 @@ export const usersRouter = createRouter().mutation('assignToCard', {
   },
 });
 
-export type CardsRouter = typeof usersRouter;
+export type UsersRouter = typeof usersRouter;
