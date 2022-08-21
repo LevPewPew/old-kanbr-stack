@@ -14,7 +14,7 @@ const childrenStyle = {
 
 export default function Deck({ children }: Props) {
   return (
-    <Center position={'relative'} sx={{ ...cardSizeStyles, ...childrenStyle }}>
+    <Center position={'relative'} sx={{ ...cardSizeStyles.full, ...childrenStyle }}>
       {children}
     </Center>
   );

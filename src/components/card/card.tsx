@@ -8,14 +8,21 @@ interface Props {
   description: string | nullish;
   users: { id: string; name: string }[];
   status: CardModel['status'];
+  size?: 'full' | 'mini';
 }
 
 export const cardSizeStyles = {
-  width: '2xl',
-  height: '3xl',
+  full: {
+    width: '2xl',
+    height: '3xl',
+  },
+  mini: {
+    width: 'm',
+    height: 'l',
+  },
 };
 
-export default function Card({ title, description, users, status }: Props) {
+export default function Card({ title, description, users, status, size = 'full' }: Props) {
   return (
     <Box
       bg="orange.200"
@@ -23,7 +30,7 @@ export default function Card({ title, description, users, status }: Props) {
       borderColor="orange.500"
       borderStyle="dashed"
       padding="8"
-      sx={cardSizeStyles}
+      sx={cardSizeStyles[size]}
     >
       <Heading as="h2">{title}</Heading>
       <Text mt="2">{description}</Text>
