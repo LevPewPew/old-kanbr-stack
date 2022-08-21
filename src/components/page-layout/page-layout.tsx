@@ -49,6 +49,12 @@ const leftLinks: LinkModel[] = [
     href: '/projects/decks/cards/create',
     displayStatus: 'authenticated',
   },
+  {
+    id: '6',
+    text: 'Big Picture',
+    href: '/big-picture',
+    displayStatus: 'authenticated',
+  },
 ];
 
 const rightLinks: LinkModel[] = [
