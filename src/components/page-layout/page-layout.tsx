@@ -6,6 +6,7 @@ import { Button, Header, Link } from '~/components';
 
 type Props = {
   children: ReactNode;
+  maxWidth?: string; // FIXME make this type a union of chakra Container maxWidth prop
 };
 
 type SessionStatus = 'authenticated' | 'loading' | 'unauthenticated';
@@ -68,7 +69,7 @@ const rightLinks: LinkModel[] = [
 
 /* FIXME make more composable by lifting left and right to props. This will
 allow pages to control what is in navigation */
-export default function PageLayout(props: Props) {
+export default function PageLayout({ children, maxWidth = 'container.lg' }: Props) {
   const { status: userStatus, data: session } = useSession();
   const router = useRouter();
 
@@ -100,8 +101,8 @@ export default function PageLayout(props: Props) {
           }
         })}
       />
-      <Container as="main" maxWidth={'container.lg'}>
-        {props.children}
+      <Container as="main" maxWidth={maxWidth}>
+        {children}
       </Container>
     </div>
   );

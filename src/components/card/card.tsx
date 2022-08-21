@@ -8,7 +8,7 @@ interface Props {
   description: string | nullish;
   users: { id: string; name: string }[];
   status: CardModel['status'];
-  size?: 'full' | 'mini';
+  size?: 'full' | 'container';
 }
 
 export const cardSizeStyles = {
@@ -16,10 +16,7 @@ export const cardSizeStyles = {
     width: '2xl',
     height: '3xl',
   },
-  mini: {
-    width: 'm',
-    height: 'l',
-  },
+  container: {},
 };
 
 export default function Card({ title, description, users, status, size = 'full' }: Props) {

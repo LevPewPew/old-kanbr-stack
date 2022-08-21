@@ -1,6 +1,7 @@
 import React from 'react';
 import { InferGetServerSidePropsType } from 'next';
 import prisma from '~/clients/prisma';
+import { SimpleGrid } from '@chakra-ui/react';
 import { Card, PageLayout } from '~/components';
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
@@ -25,10 +26,10 @@ if it doesn't make sense to call it that, you built the wrong feature. The
 marketing/UX name for the route and heading can change as needed. */
 export default function GraphViewPage(props: ServerSideProps) {
   return (
-    <PageLayout>
+    <PageLayout maxWidth="fit-content">
       <div className="page">
         <h1>The Big Picture</h1>
-        <div>
+        <SimpleGrid columns={5} spacing={10}>
           {props.cards.map((card) => {
             return (
               <Card
@@ -37,11 +38,11 @@ export default function GraphViewPage(props: ServerSideProps) {
                 description={card.description}
                 status={card.status}
                 users={card.users}
-                size="mini"
+                size="container"
               />
             );
           })}
-        </div>
+        </SimpleGrid>
       </div>
     </PageLayout>
   );
