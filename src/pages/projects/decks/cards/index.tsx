@@ -44,7 +44,10 @@ export default function CardsPage(props: ServerSideProps) {
   function handleRightClick() {
     removeCard();
     if (userId) {
-      assignUserToCard.mutate({ cardId: topCard.id, userId });
+      if (Math.random() > 0.5) {
+        assignUserToCard.mutate({ cardId: topCard.id, userId });
+        alert('You have a match!');
+      }
     }
   }
 
@@ -54,6 +57,7 @@ export default function CardsPage(props: ServerSideProps) {
         draft.pop();
       }),
     );
+    /* TODO create a list of undecided cards in DB per user, and remove cards from there when clicking through */
   }
 
   return (

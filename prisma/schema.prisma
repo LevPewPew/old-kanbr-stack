@@ -50,18 +50,65 @@ enum CardStatus {
   COMPLETE
 }
 
-// TODO: create a project model, and have card belong to a project, required
 model Card {
   id          String     @id @default(cuid())
+  deckId      String     @map("deck_id")
   title       String
   description String?
   status      CardStatus @default(READY)
   createdAt   DateTime   @default(now()) @map("created_at")
   updatedAt   DateTime   @updatedAt @map("updated_at")
 
-  users User[]
+  users       User[]
+  Deck        Deck          @relation(fields: [deckId], references: [id])
+  DecidedCard DecidedCard[]
 
   @@map("cards")
+}
+
+model DecidedCard {
+  userId     String  @map("user_id")
+  cardId     String  @map("card_id")
+  interested Boolean
+  matched    Boolean
+
+  Card Card @relation(fields: [cardId], references: [id])
+  User User @relation(fields: [userId], references: [id])
+
+  @@id([cardId, userId])
+  @@map("decided_cards")
+}
+
+model Deck {
+  id        String @id @default(cuid())
+  projectId String @map("project_id")
+
+  Project Project @relation(fields: [projectId], references: [id])
+  Cards   Card[]
+
+  @@map("decks")
+}
+
+model Project {
+  id          String  @id @default(cuid())
+  title       String
+  description String?
+
+  Decks         Deck[]
+  ProjectToUser ProjectToUser[]
+
+  @@map("projects")
+}
+
+model ProjectToUser {
+  projectId String @map("project_id")
+  userId    String @map("user_id")
+
+  Project Project @relation(fields: [projectId], references: [id])
+  User    User    @relation(fields: [userId], references: [id])
+
+  @@id([projectId, userId])
+  @@map("project_to_user")
 }
 
 // FIXME 
@@ -77,9 +124,11 @@ model User {
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @updatedAt @map("updated_at")
 
-  accounts Account[]
-  sessions Session[]
-  card     Card?     @relation(fields: [cardId], references: [id])
+  accounts      Account[]
+  sessions      Session[]
+  card          Card?           @relation(fields: [cardId], references: [id])
+  DecidedCard   DecidedCard[]
+  ProjectToUser ProjectToUser[]
 
   @@map("users")
 }
@@ -94,3 +143,5 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map("verification_tokens")
 }
+
+// FIXME change all the "prisma special rows" to use Pascal case for better distinction
