@@ -30,6 +30,7 @@ export default function CardsPage(props: ServerSideProps) {
   const assignUserToCard = useMutation(['users.assignToCard']);
   const { data: session } = useSession();
   const topCard = deck[deck.length - 1];
+  /* TODO make so any page hidden behind auth doesn't need to check for userId existing */
   const userId = session?.user?.id;
 
   useEffect(() => {
