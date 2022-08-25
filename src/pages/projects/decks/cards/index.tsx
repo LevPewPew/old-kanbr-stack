@@ -44,7 +44,7 @@ export default function CardsPage(props: ServerSideProps) {
   function handleRightClick() {
     removeCard();
     if (userId) {
-      assignUserToCard.mutate({ cardId: topCard.id, userId: userId });
+      assignUserToCard.mutate({ cardId: topCard.id, userId });
     }
   }
 
