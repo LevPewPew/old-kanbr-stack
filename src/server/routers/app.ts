@@ -8,7 +8,7 @@ import { usersRouter } from './users';
 
 export const appRouter = createRouter()
   .transformer(transformer)
-  .merge('card.', cardsRouter) // FIXME change to plural
+  .merge('cards.', cardsRouter)
   .merge('dev.', developerRouter)
   .merge('users.', usersRouter)
   .merge('projects.', projectsRouter)

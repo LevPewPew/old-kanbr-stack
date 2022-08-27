@@ -18,7 +18,7 @@ type CardFormSchema = z.infer<typeof cardFormSchema>;
 
 // TODO add editing prop and functionality. will need to have default values come from data or props.
 export default function CardForm() {
-  const createCard = useMutation(['card.create']);
+  const createCard = useMutation(['cards.create']);
   const {
     handleSubmit,
     register,
