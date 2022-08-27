@@ -1,10 +1,28 @@
 import React from 'react';
+import { InferGetServerSidePropsType } from 'next';
+import prisma from '~/clients/prisma';
 import { PageLayout } from '~/components';
 
-export default function Foobar() {
+type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
+
+export async function getServerSideProps() {
+  const projects = await prisma.project.findMany();
+
+  return { props: { projects } };
+}
+
+export default function ProjectsPage({ projects }: ServerSideProps) {
   return (
     <PageLayout>
-      <h1>PROJECT LIST PAGE PLACEHOLDER</h1>
+      <h1>PROJECT LIST PAGE</h1>
+      {projects.map((project) => {
+        return (
+          <div key={project.id}>
+            <li>title: {project.title}</li>
+            <li>description: {project.description}</li>
+          </div>
+        );
+      })}
     </PageLayout>
   );
 }
