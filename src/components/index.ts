@@ -6,3 +6,4 @@ export { default as DeckForm } from './deck-form';
 export { default as Header } from './header';
 export { default as Link } from './link';
 export { default as PageLayout } from './page-layout';
+export { default as ProjectForm } from './project-form';
