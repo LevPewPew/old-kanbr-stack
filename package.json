@@ -8,7 +8,8 @@
     "dev": "next",
     "lint": "next lint",
     "start": "next start",
-    "watch:ts": "yarn tsc --noEmit --incremental --watch"
+    "watch:ts": "yarn tsc --noEmit --incremental --watch",
+    "db:force-push": "npx prisma db push && npx prisma generate"
   },
   "keywords": [],
   "author": "",
