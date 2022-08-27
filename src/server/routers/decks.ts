@@ -18,4 +18,4 @@ export const decksRouter = createRouter().mutation('create', {
   },
 });
 
-export type CardsRouter = typeof decksRouter;
+export type DecksRouter = typeof decksRouter;
