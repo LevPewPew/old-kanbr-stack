@@ -80,8 +80,10 @@ model DecidedCard {
 }
 
 model Deck {
-  id        String @id @default(cuid())
-  projectId String @map("project_id")
+  id          String  @id @default(cuid())
+  title       String
+  description String?
+  projectId   String  @map("project_id")
 
   Project Project @relation(fields: [projectId], references: [id])
   Cards   Card[]
