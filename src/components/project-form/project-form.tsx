@@ -10,7 +10,7 @@ import { createProjectSchema } from '~/server/routers/projects';
 type ProjectFormSchema = z.infer<typeof createProjectSchema>;
 
 export default function ProjectForm() {
-  const createProject = useMutation(['project.create']);
+  const createProject = useMutation(['projects.create']);
   const {
     handleSubmit,
     register,
@@ -31,7 +31,7 @@ export default function ProjectForm() {
 
   useEffect(() => {
     if (createProject.isSuccess) {
-      Router.push('/projects/projects');
+      Router.push('/projects');
     }
   }, [createProject.isSuccess]);
 
