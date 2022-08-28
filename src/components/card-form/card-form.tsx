@@ -6,18 +6,19 @@ import { useMutation, useZodForm } from '~/hooks';
 import { sanitizeReactHookFormValues } from '~/helpers';
 import { Button } from '~/components';
 
-/* TODO have this in the server and get card-form to import it, 
-that way the schemas are all in one place */
 export const cardFormSchema = z.object({
   title: z.string().min(1, { message: 'Required' }),
   description: z.string().nullish(),
-  deckId: z.string(),
 });
 
 type CardFormSchema = z.infer<typeof cardFormSchema>;
+interface Props {
+  deckId: string;
+}
 
-// TODO add editing prop and functionality. will need to have default values come from data or props.
-export default function CardForm() {
+/* TODO add editing prop and functionality. will need to have default values come
+from data or props. dependency injecting onSubmit handler is probably best approach */
+export default function CardForm({ deckId }: Props) {
   const createCard = useMutation(['cards.create']);
   const {
     handleSubmit,
@@ -32,8 +33,10 @@ export default function CardForm() {
   });
 
   function onSubmit(values: CardFormSchema) {
+    // FIXME do i need a preventdefault? am i submitting to the server even when validation showing error implies that i didn't?
     const sanitizedValues = sanitizeReactHookFormValues(values);
-    createCard.mutate(sanitizedValues);
+    const inputArguments = { ...sanitizedValues, deckId };
+    createCard.mutate(inputArguments);
   }
 
   useEffect(() => {

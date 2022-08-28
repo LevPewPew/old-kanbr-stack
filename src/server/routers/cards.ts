@@ -1,10 +1,15 @@
 import { createRouter } from '~/server/create-router';
-import { cardFormSchema } from '~/components/card-form';
-
-/* TODO: split up functions to be grouped by model and import here into root */
+import { z } from 'zod';
 
 export const cardsRouter = createRouter().mutation('create', {
-  input: cardFormSchema,
+  input: z.object({
+    title: z.string().min(1, { message: 'Required' }),
+    deckId: z.string(),
+    description: z.string().nullish(),
+    status: z
+      .union([z.literal('READY'), z.literal('IN_PROGRESS'), z.literal('COMPLETE')])
+      .optional(), // NEXT create array ouy of union type from CardStatus from prisma client, refer to my obsidian note
+  }),
   async resolve({ ctx, input }) {
     const card = await ctx.prisma.card.create({
       data: input,

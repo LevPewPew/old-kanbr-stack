@@ -1,7 +1,8 @@
 import { z } from 'zod';
 import { createRouter } from '~/server/create-router';
 
-export const createProjectSchema = z.object({
+// TODO finish off doing schema properly
+const createProjectSchema = z.object({
   title: z.string().min(1, { message: 'Required' }),
   description: z.string().nullish(),
   userId: z.string(),
