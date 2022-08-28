@@ -8,7 +8,7 @@ export const cardsRouter = createRouter().mutation('create', {
     description: z.string().nullish(),
     status: z
       .union([z.literal('READY'), z.literal('IN_PROGRESS'), z.literal('COMPLETE')])
-      .optional(), // NEXT create array ouy of union type from CardStatus from prisma client, refer to my obsidian note
+      .optional(), // FIXME create array ouy of union type from CardStatus from prisma client, refer to my obsidian note
   }),
   async resolve({ ctx, input }) {
     const card = await ctx.prisma.card.create({

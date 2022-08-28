@@ -18,60 +18,59 @@ interface LinkModel {
   displayStatus?: SessionStatus;
 }
 
-/* TODO links data should come from backend, based on auth */
-
-const leftLinks: LinkModel[] = [
-  {
-    id: '1',
-    text: 'Home',
-    href: '/',
-  },
-  {
-    id: '2',
-    text: 'Projects',
-    href: '/projects',
-    displayStatus: 'authenticated',
-  },
-  {
-    id: '3',
-    text: 'Decks',
-    href: '/projects/decks',
-    displayStatus: 'authenticated',
-  },
-  {
-    id: '4',
-    text: 'Cards',
-    href: '/projects/decks/cards',
-    displayStatus: 'authenticated',
-  },
-  {
-    id: '5',
-    text: 'New Card',
-    href: '/projects/decks/cards/create',
-    displayStatus: 'authenticated',
-  },
-  {
-    id: '6',
-    text: 'Big Picture',
-    href: '/big-picture',
-    displayStatus: 'authenticated',
-  },
-];
-
-const rightLinks: LinkModel[] = [
-  {
-    id: '1',
-    text: 'Log in',
-    href: '/api/auth/signin',
-    displayStatus: 'unauthenticated',
-  },
-];
-
 /* FIXME make more composable by lifting left and right to props. This will
 allow pages to control what is in navigation */
 export default function PageLayout({ children, maxWidth = 'container.lg' }: Props) {
   const { status: userStatus, data: session } = useSession();
   const router = useRouter();
+
+  /* TODO links data should come from backend, based on auth */
+  const leftLinks: LinkModel[] = [
+    {
+      id: '1',
+      text: 'Home',
+      href: '/',
+    },
+    {
+      id: '2',
+      text: 'Projects',
+      href: '/projects',
+      displayStatus: 'authenticated',
+    },
+    {
+      id: '3',
+      text: 'Decks',
+      href: '/projects/decks',
+      displayStatus: 'authenticated',
+    },
+    {
+      id: '4',
+      text: 'Cards',
+      href: '/projects/decks/cards',
+      displayStatus: 'authenticated',
+    },
+    {
+      id: '5',
+      text: 'New Card',
+      href: '/projects/decks/cards/create',
+      displayStatus: 'authenticated',
+    },
+    {
+      id: '6',
+      text: 'Big Picture',
+      href: '/big-picture',
+      displayStatus: 'authenticated',
+    },
+  ];
+
+  const rightLinks: LinkModel[] = [
+    {
+      id: '1',
+      text: 'Log in',
+      href: '/api/auth/signin',
+      displayStatus: 'unauthenticated',
+    },
+  ];
 
   return (
     <div>

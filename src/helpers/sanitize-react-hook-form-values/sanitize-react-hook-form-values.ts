@@ -1,3 +1,4 @@
+// TODO don't use lodash, roll own, or try the radash library
 import { pickBy } from 'lodash';
 
 export default function sanitizeReactHookFormValues<T extends Record<string, any>>(object: T) {
