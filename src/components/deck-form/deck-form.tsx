@@ -14,10 +14,11 @@ const createDeckSchema = z.object({
 });
 
 type DeckFormSchema = z.infer<typeof createDeckSchema>;
+interface Props {
+  projectId: string;
+}
 
-export default function DeckForm() {
-  const router = useRouter();
-  const { projectId } = router.query;
+export default function DeckForm({ projectId }: Props) {
   const createDeck = useMutation(['decks.create']);
   const {
     handleSubmit,

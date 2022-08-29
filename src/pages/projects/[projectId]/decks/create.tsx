@@ -5,22 +5,22 @@ import { DeckForm } from '~/components';
 
 export default function CreateDeckPage() {
   const router = useRouter();
-  const { deckId } = router.query;
-  /* FIXME make it throw and error if it could not find the deckId */
-  let UNSAFE_deckId;
-  if (typeof deckId === 'string') {
-    UNSAFE_deckId = deckId;
-  } else if (deckId) {
-    UNSAFE_deckId = deckId[0];
+  const { projectId } = router.query;
+  /* FIXME make it throw and error if it could not find the projectId */
+  let UNSAFE_projectId;
+  if (typeof projectId === 'string') {
+    UNSAFE_projectId = projectId;
+  } else if (projectId) {
+    UNSAFE_projectId = projectId[0];
   } else {
-    UNSAFE_deckId = 'ERROR: Could not find deckId';
+    UNSAFE_projectId = 'ERROR: Could not find projectId';
   }
   console.log('🚀 ~ CreateDeckPage ~ router.query', router.query);
 
   return (
     <PageLayout>
       <div className="page">
-        <DeckForm deckId={UNSAFE_deckId} />
+        <DeckForm projectId={UNSAFE_projectId} />
       </div>
     </PageLayout>
   );
