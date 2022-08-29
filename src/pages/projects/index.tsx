@@ -6,7 +6,7 @@ import { Button, PageLayout } from '~/components';
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
-// NEXT find projects only for the signed in user
+// LEFTOFF find projects only for the signed in user
 export async function getServerSideProps() {
   const projects = await prisma.project.findMany();
 

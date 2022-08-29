@@ -5,7 +5,6 @@ export const projectsRouter = createRouter().mutation('create', {
   input: z.object({
     title: z.string(),
     description: z.string().nullish(),
-    projectId: z.string(),
     userId: z.string(),
   }),
   async resolve({ ctx, input }) {
