@@ -1,6 +1,9 @@
 import React from 'react';
-import { GetServerSidePropsContext } from 'next';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import Router from 'next/router';
 import prisma from '~/clients/prisma';
+
+type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 /* FIXME fix the any type. need to create a type that contains the possible 
 dynamic route variable names, or just the one to expect on ProjectPage. this 
@@ -14,13 +17,26 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext<any>) {
     },
   });
 
-  return { props: { decks } };
+  return { props: { decks, projectId } };
 }
 
-export default function ProjectPage() {
+export default function ProjectPage({ decks, projectId }: ServerSideProps) {
   return (
     <div>
       <h1>PROJECT PAGE PLACEHOLDER</h1>
+      <h2>LIST OF DECKS</h2>
+      {decks.map((deck) => {
+        return (
+          <div key={deck.id}>
+            <li>title: {deck.title}</li>
+            <li>description: {deck.description}</li>
+            <button onClick={() => Router.push(`/projects/${projectId}/decks/${deck.id}`)}>
+              link to deck
+            </button>
+          </div>
+        );
+      })}
+      <button onClick={() => Router.push(`/projects/${projectId}/decks/create`)}>NEW deck</button>
     </div>
   );
 }
