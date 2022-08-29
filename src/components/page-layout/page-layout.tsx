@@ -39,24 +39,6 @@ export default function PageLayout({ children, maxWidth = 'container.lg' }: Prop
     },
     {
       id: '3',
-      text: 'Decks',
-      href: '/projects/decks',
-      displayStatus: 'authenticated',
-    },
-    {
-      id: '4',
-      text: 'Cards',
-      href: '/projects/decks/cards',
-      displayStatus: 'authenticated',
-    },
-    {
-      id: '5',
-      text: 'New Card',
-      href: '/projects/decks/cards/create',
-      displayStatus: 'authenticated',
-    },
-    {
-      id: '6',
       text: 'Big Picture',
       href: '/big-picture',
       displayStatus: 'authenticated',
