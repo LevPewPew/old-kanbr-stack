@@ -2,6 +2,7 @@ import React from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Router from 'next/router';
 import prisma from '~/clients/prisma';
+import { Button } from '~/components';
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
@@ -30,13 +31,13 @@ export default function ProjectPage({ decks, projectId }: ServerSideProps) {
           <div key={deck.id}>
             <li>title: {deck.title}</li>
             <li>description: {deck.description}</li>
-            <button onClick={() => Router.push(`/projects/${projectId}/decks/${deck.id}`)}>
+            <Button onClick={() => Router.push(`/projects/${projectId}/decks/${deck.id}`)}>
               link to deck
-            </button>
+            </Button>
           </div>
         );
       })}
-      <button onClick={() => Router.push(`/projects/${projectId}/decks/create`)}>NEW deck</button>
+      <Button onClick={() => Router.push(`/projects/${projectId}/decks/create`)}>NEW deck</Button>
     </div>
   );
 }
