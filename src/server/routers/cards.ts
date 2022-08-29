@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 export const cardsRouter = createRouter().mutation('create', {
   input: z.object({
-    title: z.string().min(1, { message: 'Required' }),
+    title: z.string(),
     deckId: z.string(),
     description: z.string().nullish(),
     status: z

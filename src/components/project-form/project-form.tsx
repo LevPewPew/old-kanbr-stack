@@ -15,11 +15,10 @@ const createProjectSchema = z.object({
 
 type ProjectFormSchema = z.infer<typeof createProjectSchema>;
 interface Props {
-  projectId: string;
   userId: string;
 }
 
-export default function ProjectForm({ projectId, userId }: Props) {
+export default function ProjectForm({ userId }: Props) {
   const createProject = useMutation(['projects.create']);
   const {
     handleSubmit,
@@ -35,12 +34,13 @@ export default function ProjectForm({ projectId, userId }: Props) {
 
   function onSubmit(values: ProjectFormSchema) {
     const sanitizedValues = sanitizeReactHookFormValues(values);
-    const inputArguments = { ...sanitizedValues, projectId, userId };
+    const inputArguments = { ...sanitizedValues, userId };
     createProject.mutate(inputArguments);
   }
 
   useEffect(() => {
     if (createProject.isSuccess) {
+      // TODO make it go to the project that was just created, not the list of projects
       Router.push('/projects');
     }
   }, [createProject.isSuccess]);

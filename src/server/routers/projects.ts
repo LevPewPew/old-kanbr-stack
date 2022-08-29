@@ -3,7 +3,7 @@ import { createRouter } from '~/server/create-router';
 
 export const projectsRouter = createRouter().mutation('create', {
   input: z.object({
-    title: z.string().min(1, { message: 'Required' }),
+    title: z.string(),
     description: z.string().nullish(),
     projectId: z.string(),
     userId: z.string(),
@@ -18,7 +18,7 @@ export const projectsRouter = createRouter().mutation('create', {
     const projectToUser = await ctx.prisma.projectToUser.create({
       data: {
         userId: input.userId,
-        projectId: input.projectId,
+        projectId: project.id,
       },
     });
 

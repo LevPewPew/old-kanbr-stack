@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import Router, { useRouter } from 'next/router';
+import Router from 'next/router';
 import { FormErrorMessage, FormLabel, FormControl, Input } from '@chakra-ui/react';
 import { z } from 'zod';
 import { useMutation, useZodForm } from '~/hooks';
 import { sanitizeReactHookFormValues } from '~/helpers';
 import { Button } from '~/components';
 
-// TODO finish off doing schema properly
 const createDeckSchema = z.object({
   title: z.string().min(1, { message: 'Required' }),
   description: z.string().nullish(),
@@ -34,11 +33,13 @@ export default function DeckForm({ projectId }: Props) {
 
   function onSubmit(values: DeckFormSchema) {
     const sanitizedValues = sanitizeReactHookFormValues(values);
-    createDeck.mutate(sanitizedValues);
+    const inputArguments = { ...sanitizedValues, projectId };
+    createDeck.mutate(inputArguments);
   }
 
   useEffect(() => {
     if (createDeck.isSuccess) {
+      // TODO make it go to the deck that was just created, not the list of decks
       Router.push(`/projects/${projectId}/decks`);
     }
   }, [createDeck.isSuccess]);
