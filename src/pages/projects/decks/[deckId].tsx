@@ -70,7 +70,6 @@ export default function DeckPage({ cards, deckId, projectId }: ServerSideProps) 
     /* TODO create a list of undecided cards in DB per user, and remove cards from there when clicking through */
   }
 
-  // LEFTOFF see if all routing stuff works and i can go "end to end" creation and nav
   return (
     <PageLayout>
       <HStack spacing="4">
