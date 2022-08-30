@@ -15,7 +15,6 @@ export default function CreateCardPage() {
   } else {
     UNSAFE_deckId = 'ERROR: Could not find deckId';
   }
-  console.log('🚀 ~ CreateCardPage ~ router.query', router.query);
 
   return (
     <PageLayout>

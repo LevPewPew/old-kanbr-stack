@@ -6,7 +6,6 @@ import { DeckForm } from '~/components';
 export default function CreateDeckPage() {
   const router = useRouter();
   const { projectId } = router.query;
-  console.log('🚀 ~ CreateDeckPage ~ router.query', router.query);
   /* FIXME make it throw and error if it could not find the projectId */
   let UNSAFE_projectId;
   if (typeof projectId === 'string') {

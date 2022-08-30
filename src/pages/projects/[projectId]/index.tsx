@@ -17,7 +17,6 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext<any>) {
       projectId,
     },
   });
-  console.log('🚀 ~ getServerSideProps ~ decks', decks);
 
   return { props: { decks, projectId } };
 }
