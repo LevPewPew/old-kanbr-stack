@@ -14,11 +14,12 @@ export const cardFormSchema = z.object({
 type CardFormSchema = z.infer<typeof cardFormSchema>;
 interface Props {
   deckId: string;
+  projectId: string;
 }
 
 /* TODO add editing prop and functionality. will need to have default values come
 from data or props. dependency injecting onSubmit handler is probably best approach */
-export default function CardForm({ deckId }: Props) {
+export default function CardForm({ deckId, projectId }: Props) {
   const createCard = useMutation(['cards.create']);
   const {
     handleSubmit,
@@ -41,7 +42,8 @@ export default function CardForm({ deckId }: Props) {
 
   useEffect(() => {
     if (createCard.isSuccess) {
-      Router.push('/projects/decks/cards');
+      /* TODO push to card just created, not list of cards */
+      Router.push(`/projects/${projectId}/decks/${deckId}`);
     }
   }, [createCard.isSuccess]);
 

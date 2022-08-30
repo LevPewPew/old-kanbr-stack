@@ -18,6 +18,9 @@ way it can be done that just needs to be researched? */
 export async function getServerSideProps(ctx: GetServerSidePropsContext<any>) {
   const { deckId, projectId } = ctx.params;
   const cards = await prisma.card.findMany({
+    where: {
+      deckId,
+    },
     include: {
       users: {
         select: {
