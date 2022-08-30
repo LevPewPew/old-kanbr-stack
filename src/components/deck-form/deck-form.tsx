@@ -9,7 +9,6 @@ import { Button } from '~/components';
 const createDeckSchema = z.object({
   title: z.string().min(1, { message: 'Required' }),
   description: z.string().nullish(),
-  projectId: z.string(),
 });
 
 type DeckFormSchema = z.infer<typeof createDeckSchema>;
@@ -40,7 +39,7 @@ export default function DeckForm({ projectId }: Props) {
   useEffect(() => {
     if (createDeck.isSuccess) {
       // TODO make it go to the deck that was just created, not the list of decks
-      Router.push(`/projects/${projectId}/decks`);
+      Router.push(`/projects/${projectId}`);
     }
   }, [createDeck.isSuccess]);
 

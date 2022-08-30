@@ -14,9 +14,10 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext<any>) {
   const { projectId } = ctx.params;
   const decks = await prisma.deck.findMany({
     where: {
-      id: projectId,
+      projectId,
     },
   });
+  console.log('🚀 ~ getServerSideProps ~ decks', decks);
 
   return { props: { decks, projectId } };
 }
