@@ -1,14 +1,27 @@
 import React from 'react';
-import { InferGetServerSidePropsType } from 'next';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import { getSession } from 'next-auth/react';
 import Router from 'next/router';
 import prisma from '~/clients/prisma';
 import { Button, PageLayout } from '~/components';
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
-// LEFTOFF find projects only for the signed in user
-export async function getServerSideProps() {
-  const projects = await prisma.project.findMany();
+// FIXME any type
+export async function getServerSideProps(ctx: GetServerSidePropsContext<any>) {
+  const session = await getSession(ctx);
+  const userId = session?.user?.id;
+  const projectToUsers = await prisma.projectToUser.findMany({
+    where: {
+      userId,
+    },
+    include: {
+      Project: true,
+    },
+  });
+  /* FIXME change prisma query so that the response comes out in this shape
+  directly, this removes the need to map into expected and convenient shape */
+  const projects = projectToUsers.map((projectToUser) => ({ ...projectToUser.Project }));
 
   return { props: { projects } };
 }
