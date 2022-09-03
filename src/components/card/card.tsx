@@ -18,9 +18,8 @@ export default function Card({ title, description, users, status, size }: Props)
       <Heading as="h2">{title}</Heading>
       <Text mt="2">{description}</Text>
       <Text mt="2">On it:</Text>
-      {/* FIXME don't use index for key */}
-      {users.map((user, i) => (
-        <div key={i}>
+      {users.map((user) => (
+        <div key={user.id}>
           <Text mt="2">{user.id}</Text>
           <Text mt="2">{user.name}</Text>
         </div>
