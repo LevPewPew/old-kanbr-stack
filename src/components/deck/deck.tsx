@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Center } from '@chakra-ui/react';
-import { cardSizeStyles } from '~/components/card';
+import { cardSizeStyles } from '~/components/list-item-card';
 
 export interface Props {
   children: ReactNode;
@@ -14,7 +14,7 @@ const childrenStyle = {
 
 export default function Deck({ children }: Props) {
   return (
-    <Center position={'relative'} sx={{ ...cardSizeStyles.full, ...childrenStyle }}>
+    <Center position={'relative'} sx={{ ...cardSizeStyles.large, ...childrenStyle }}>
       {children}
     </Center>
   );

@@ -38,7 +38,6 @@ export default function GraphViewPage(props: ServerSideProps) {
                 description={card.description}
                 status={card.status}
                 users={card.users}
-                size="container"
               />
             );
           })}

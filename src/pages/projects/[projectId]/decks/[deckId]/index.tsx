@@ -52,12 +52,7 @@ export default function DeckPage({ cards, deckId, projectId }: ServerSideProps) 
 
   function handleRightClick() {
     removeCard();
-    if (userId) {
-      if (Math.random() > 0.5) {
-        assignUserToCard.mutate({ cardId: topCard.id, userId });
-        alert('You have a match!');
-      }
-    }
+    // LEFTOFF use the DecidedCard model to keep track of what cards a user is interested in, and with what they are matched with
   }
 
   function handleNewCardClick() {
@@ -88,6 +83,7 @@ export default function DeckPage({ cards, deckId, projectId }: ServerSideProps) 
                 description={card.description}
                 status={card.status}
                 users={card.users}
+                size="large"
               />
             );
           })}
