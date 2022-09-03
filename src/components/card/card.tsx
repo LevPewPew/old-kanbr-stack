@@ -1,16 +1,15 @@
-import React from 'react';
-import { Box, Heading, Text } from '@chakra-ui/react';
+import React, { ComponentProps } from 'react';
+import { Heading, Text } from '@chakra-ui/react';
 import { capitalCase } from 'change-case';
 import { Card as CardModel } from '@prisma/client';
 import { ListItemCard } from '~/components';
-import { ListItemCardSize } from '~/components/list-item-card/list-item-card'; /* NEXT get rid of this once i try the infer from props trick */
 
 interface Props {
   title: string;
   description: string | nullish;
   users: { id: string; name: string }[];
   status: CardModel['status'];
-  size?: ListItemCardSize;
+  size?: ComponentProps<typeof ListItemCard>['size'];
 }
 
 export default function Card({ title, description, users, status, size }: Props) {

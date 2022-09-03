@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Box } from '@chakra-ui/react';
 
-/* NEXT perfect thing to try the infer props of component from instead of exporting */
-export type ListItemCardSize = 'large' | 'container';
+type ListItemCardSize = 'large' | 'container';
 interface Props {
   children: ReactNode;
   size?: ListItemCardSize;
