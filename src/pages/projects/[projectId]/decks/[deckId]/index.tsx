@@ -5,7 +5,7 @@ import produce from 'immer';
 import prisma from '~/clients/prisma';
 import { Button, HStack } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
-import { Card, Deck, PageLayout } from '~/components';
+import { CardCardItem, DeckVisual, PageLayout } from '~/components';
 import { useMutation } from '~/hooks';
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
@@ -74,10 +74,10 @@ export default function DeckPage({ cards, deckId, projectId }: ServerSideProps) 
         <Button onClick={handleLeftClick} colorScheme={'red'}>
           {'<- LEFT'}
         </Button>
-        <Deck>
+        <DeckVisual>
           {deck.map((card) => {
             return (
-              <Card
+              <CardCardItem
                 key={card.id}
                 title={card.title}
                 description={card.description}
@@ -87,7 +87,7 @@ export default function DeckPage({ cards, deckId, projectId }: ServerSideProps) 
               />
             );
           })}
-        </Deck>
+        </DeckVisual>
         <Button onClick={handleRightClick} colorScheme={'green'}>
           {'RIGHT ->'}
         </Button>

@@ -2,7 +2,7 @@ import React from 'react';
 import { InferGetServerSidePropsType } from 'next';
 import prisma from '~/clients/prisma';
 import { SimpleGrid } from '@chakra-ui/react';
-import { Card, PageLayout } from '~/components';
+import { CardCardItem, PageLayout } from '~/components';
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
@@ -32,7 +32,7 @@ export default function GraphViewPage(props: ServerSideProps) {
         <SimpleGrid columns={5} spacing={10}>
           {props.cards.map((card) => {
             return (
-              <Card
+              <CardCardItem
                 key={card.id}
                 title={card.title}
                 description={card.description}

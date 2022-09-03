@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react';
 import { Box } from '@chakra-ui/react';
 
-type ListItemCardSize = 'large' | 'container';
+type CardItemSize = 'large' | 'container';
 interface Props {
   children: ReactNode;
-  size?: ListItemCardSize;
+  size?: CardItemSize;
 }
 
 export const cardSizeStyles = {
@@ -15,7 +15,7 @@ export const cardSizeStyles = {
   container: {},
 };
 
-export default function ListItemCard({ children, size = 'container' }: Props) {
+export default function CardItem({ children, size = 'container' }: Props) {
   return (
     <Box
       bg="orange.200"
