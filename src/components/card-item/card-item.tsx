@@ -14,10 +14,7 @@ export const cardSizeStyles = {
     width: '2xl',
     height: '3xl',
   },
-  container: {
-    maxWidth: 'sm',
-    /* TODO maxHeight with click to expand */
-  },
+  container: {},
 };
 
 export default function CardItem({ children, size = 'container' }: Props) {

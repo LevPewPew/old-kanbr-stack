@@ -3,7 +3,7 @@ import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { getSession } from 'next-auth/react';
 import Router from 'next/router';
 import prisma from '~/clients/prisma';
-import { Button, CardItemList, PageLayout } from '~/components';
+import { Button, CardItemList, PageLayout, ProjectCardItem } from '~/components';
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
@@ -28,17 +28,16 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext<any>) {
 
 export default function ProjectsPage({ projects }: ServerSideProps) {
   return (
-    <PageLayout heading="PROJECT LIST PAGE">
+    <PageLayout heading="Projects">
       <CardItemList>
         {projects.map((project) => {
           return (
-            <div key={project.id}>
-              <li>title: {project.title}</li>
-              <li>description: {project.description}</li>
-              <Button onClick={() => Router.push(`/projects/${project.id}`)}>
-                link to project
-              </Button>
-            </div>
+            <ProjectCardItem
+              key={project.id}
+              title={project.title}
+              description={project.description}
+              projectId={project.id}
+            />
           );
         })}
       </CardItemList>

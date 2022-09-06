@@ -7,7 +7,7 @@ interface Props {
 
 export default function CardItemList({ children }: Props) {
   return (
-    <SimpleGrid columns={5} spacing={10}>
+    <SimpleGrid columns={4} spacing={5}>
       {children}
     </SimpleGrid>
   );

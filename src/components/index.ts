@@ -10,4 +10,5 @@ export { default as DeckVisual } from './deck-visual';
 export { default as Header } from './header';
 export { default as Link } from './link';
 export { default as PageLayout } from './page-layout';
+export { default as ProjectCardItem } from './project-card-item';
 export { default as ProjectForm } from './project-form';
