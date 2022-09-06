@@ -4,6 +4,7 @@ import { Box } from '@chakra-ui/react';
 type CardItemSize = 'large' | 'container';
 interface Props {
   children: ReactNode;
+  onClick?: () => void;
   size?: CardItemSize;
 }
 
@@ -17,7 +18,11 @@ export const cardSizeStyles = {
   container: {},
 };
 
-export default function CardItem({ children, size = 'container' }: Props) {
+export default function CardItem({ children, onClick, size = 'container' }: Props) {
+  function cursorKind() {
+    return onClick ? 'pointer' : 'default';
+  }
+
   return (
     <Box
       bg="purple.100"
@@ -27,6 +32,8 @@ export default function CardItem({ children, size = 'container' }: Props) {
       padding="8"
       rounded="md"
       sx={cardSizeStyles[size]}
+      onClick={onClick}
+      cursor={cursorKind()}
     >
       {children}
     </Box>

@@ -12,13 +12,18 @@ interface Props {
 }
 
 export default function DeckCardItem({ title, description, size, projectId, deckId }: Props) {
+  function handleOnClick() {
+    navigateToProject();
+  }
+
+  function navigateToProject() {
+    Router.push(`/projects/${projectId}/decks/${deckId}`);
+  }
+
   return (
-    <CardItem size={size}>
+    <CardItem size={size} onClick={handleOnClick}>
       <Heading as="h4">{title}</Heading>
       <Text mt="2">{description}</Text>
-      <Button onClick={() => Router.push(`/projects/${projectId}/decks/${deckId}`)}>
-        View Deck
-      </Button>
     </CardItem>
   );
 }

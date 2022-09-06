@@ -1,7 +1,7 @@
 import React, { ComponentProps } from 'react';
 import Router from 'next/router';
 import { Heading, Text } from '@chakra-ui/react';
-import { Button, CardItem } from '~/components';
+import { CardItem } from '~/components';
 
 interface Props {
   title: string;
@@ -11,11 +11,18 @@ interface Props {
 }
 
 export default function ProjectCardItem({ title, description, projectId, size }: Props) {
+  function handleOnClick() {
+    navigateToProject();
+  }
+
+  function navigateToProject() {
+    Router.push(`/projects/${projectId}`);
+  }
+
   return (
-    <CardItem size={size}>
+    <CardItem size={size} onClick={handleOnClick}>
       <Heading as="h4">{title}</Heading>
       <Text mt="2">{description}</Text>
-      <Button onClick={() => Router.push(`/projects/${projectId}`)}>View Project</Button>
     </CardItem>
   );
 }
