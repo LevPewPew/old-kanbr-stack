@@ -5,9 +5,18 @@ interface Props {
   left: ReactNode;
   right: ReactNode;
 }
+
 export default function Header({ left, right }: Props) {
   return (
-    <Flex as="nav" flexDirection="row" justify="space-between" paddingX="8" paddingY="4">
+    <Flex
+      as="nav"
+      flexDirection="row"
+      justify="space-between"
+      paddingX="8"
+      paddingY="4"
+      backgroundColor="purple.100"
+      marginBottom="8"
+    >
       <HStack spacing="4">{left}</HStack>
       <HStack spacing="4">{right}</HStack>
     </Flex>

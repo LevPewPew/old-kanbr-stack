@@ -54,39 +54,39 @@ export default function AppLayout({ children }: Props) {
   ];
 
   return (
-    <Container maxWidth="container.xl" height="100vh">
-      <Flex direction="column" height="100%">
-        <Header
-          left={leftLinks.map((link) => {
-            if (link.displayStatus === userStatus) {
-              return <Link id={link.id} href={link.href} text={link.text} router={router} />;
-            }
-          })}
-          right={rightLinks.map((link) => {
-            if (link.displayStatus === userStatus) {
-              return <Link id={link.id} href={link.href} text={link.text} router={router} />;
-            }
-            if (userStatus === 'authenticated') {
-              return (
-                <>
-                  <Text>{session.user?.name}</Text>
-                  <Avatar size="sm" />
-                  <Button variant="ghost" onClick={() => signOut()}>
-                    Log out
-                  </Button>
-                </>
-              );
-            }
-            if (userStatus === 'loading') {
-              return <div>Checking authorization...</div>;
-            }
-          })}
-        />
+    <Flex direction="column" height="100%">
+      <Header
+        left={leftLinks.map((link) => {
+          if (link.displayStatus === userStatus) {
+            return <Link id={link.id} href={link.href} text={link.text} router={router} />;
+          }
+        })}
+        right={rightLinks.map((link) => {
+          if (link.displayStatus === userStatus) {
+            return <Link id={link.id} href={link.href} text={link.text} router={router} />;
+          }
+          if (userStatus === 'authenticated') {
+            return (
+              <>
+                <Text>{session.user?.name}</Text>
+                <Avatar size="sm" />
+                <Button variant="ghost" onClick={() => signOut()}>
+                  Log out
+                </Button>
+              </>
+            );
+          }
+          if (userStatus === 'loading') {
+            return <div>Checking authorization...</div>;
+          }
+        })}
+      />
+      <Container maxWidth="container.xl" height="100vh">
         {children}
-        <Box marginTop="auto">
-          <Text>FOOTER PLACEHOLDER</Text>
-        </Box>
-      </Flex>
-    </Container>
+      </Container>
+      <Box marginTop="auto">
+        <Text>FOOTER PLACEHOLDER</Text>
+      </Box>
+    </Flex>
   );
 }

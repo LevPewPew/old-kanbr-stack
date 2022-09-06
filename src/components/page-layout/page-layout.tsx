@@ -19,7 +19,9 @@ export default function PageLayout({
   return (
     <>
       {/* TODO make these use Chakra headings + theme */}
-      <Heading as="h1">{heading}</Heading>
+      <Heading as="h1" marginBottom="16">
+        {heading}
+      </Heading>
       {subHeading && <Heading as="h2">{subHeading}</Heading>}
       <Container as="main" maxWidth={maxWidth}>
         {children}
