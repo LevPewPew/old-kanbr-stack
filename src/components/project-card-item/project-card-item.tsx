@@ -13,7 +13,7 @@ interface Props {
 export default function ProjectCardItem({ title, description, projectId, size }: Props) {
   return (
     <CardItem size={size}>
-      <Heading as="h3">{title}</Heading>
+      <Heading as="h4">{title}</Heading>
       <Text mt="2">{description}</Text>
       <Button onClick={() => Router.push(`/projects/${projectId}`)}>View Project</Button>
     </CardItem>

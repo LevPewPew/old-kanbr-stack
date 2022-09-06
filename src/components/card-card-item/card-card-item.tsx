@@ -15,7 +15,7 @@ interface Props {
 export default function CardCardItem({ title, description, users, status, size }: Props) {
   return (
     <CardItem size={size}>
-      <Heading as="h2">{title}</Heading>
+      <Heading as="h4">{title}</Heading>
       <Text mt="2">{description}</Text>
       <Text mt="2">On it:</Text>
       {users.map((user) => (

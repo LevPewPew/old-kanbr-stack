@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Container } from '@chakra-ui/react';
+import { Heading, Container } from '@chakra-ui/react';
 
 type Props = {
   heading: string;
@@ -19,8 +19,8 @@ export default function PageLayout({
   return (
     <>
       {/* TODO make these use Chakra headings + theme */}
-      <h1>{heading}</h1>
-      {subHeading && <h2>{subHeading}</h2>}
+      <Heading as="h1">{heading}</Heading>
+      {subHeading && <Heading as="h2">{subHeading}</Heading>}
       <Container as="main" maxWidth={maxWidth}>
         {children}
       </Container>

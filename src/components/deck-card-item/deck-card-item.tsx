@@ -14,7 +14,7 @@ interface Props {
 export default function DeckCardItem({ title, description, size, projectId, deckId }: Props) {
   return (
     <CardItem size={size}>
-      <Heading as="h2">{title}</Heading>
+      <Heading as="h4">{title}</Heading>
       <Text mt="2">{description}</Text>
       <Button onClick={() => Router.push(`/projects/${projectId}/decks/${deckId}`)}>
         View Deck
