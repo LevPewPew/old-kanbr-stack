@@ -25,7 +25,7 @@ if it doesn't make sense to call it that, you built the wrong feature. The
 marketing/UX name for the route and heading can change as needed. */
 export default function GraphViewPage(props: ServerSideProps) {
   return (
-    <PageLayout heading="The Big Picture" maxWidth="fit-content">
+    <PageLayout heading="Big Picture" maxWidth="fit-content">
       <CardItemList>
         {props.cards.map((card) => {
           return (
