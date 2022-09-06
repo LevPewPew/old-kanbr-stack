@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { AppLayout } from '~/components';
-import { DeckForm } from '~/components';
+import { DeckForm, PageLayout } from '~/components';
 
 export default function CreateDeckPage() {
   const router = useRouter();
@@ -17,10 +16,8 @@ export default function CreateDeckPage() {
   }
 
   return (
-    <AppLayout>
-      <div className="page">
-        <DeckForm projectId={UNSAFE_projectId} />
-      </div>
-    </AppLayout>
+    <PageLayout heading="Create Deck">
+      <DeckForm projectId={UNSAFE_projectId} />
+    </PageLayout>
   );
 }

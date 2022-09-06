@@ -3,7 +3,7 @@ import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { getSession } from 'next-auth/react';
 import Router from 'next/router';
 import prisma from '~/clients/prisma';
-import { Button, AppLayout } from '~/components';
+import { Button, PageLayout } from '~/components';
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
@@ -28,8 +28,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext<any>) {
 
 export default function ProjectsPage({ projects }: ServerSideProps) {
   return (
-    <AppLayout>
-      <h1>PROJECT LIST PAGE</h1>
+    <PageLayout heading="PROJECT LIST PAGE">
       {projects.map((project) => {
         return (
           <div key={project.id}>
@@ -40,6 +39,6 @@ export default function ProjectsPage({ projects }: ServerSideProps) {
         );
       })}
       <Button onClick={() => Router.push(`/projects/create`)}>NEW project</Button>
-    </AppLayout>
+    </PageLayout>
   );
 }

@@ -4,12 +4,15 @@ import { withTRPC } from '@trpc/next';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AppRouter } from '~/server/routers/app';
 import { transformer } from '~/server/transformer';
+import { AppLayout } from '~/components';
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
       <ChakraProvider>
-        <Component {...pageProps} />
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
       </ChakraProvider>
     </SessionProvider>
   );
