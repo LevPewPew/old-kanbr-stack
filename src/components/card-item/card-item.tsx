@@ -23,11 +23,12 @@ export const cardSizeStyles = {
 export default function CardItem({ children, size = 'container' }: Props) {
   return (
     <Box
-      bg="orange.200"
-      border="4px"
-      borderColor="orange.500"
-      borderStyle="dashed"
+      bg="purple.100"
+      border="2px"
+      borderColor="purple.200"
+      borderStyle="solid"
       padding="8"
+      rounded="md"
       sx={cardSizeStyles[size]}
     >
       {children}
