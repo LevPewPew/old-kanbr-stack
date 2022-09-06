@@ -2,7 +2,7 @@ import React from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Router from 'next/router';
 import prisma from '~/clients/prisma';
-import { Button, DeckCardItem } from '~/components';
+import { Button, DeckCardItem, PageLayout } from '~/components';
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
@@ -23,7 +23,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext<any>) {
 
 export default function ProjectPage({ decks, projectId }: ServerSideProps) {
   return (
-    <div>
+    <PageLayout>
       <h1>PROJECT PAGE PLACEHOLDER</h1>
       <h2>LIST OF DECKS</h2>
       {decks.map((deck) => {
@@ -38,6 +38,6 @@ export default function ProjectPage({ decks, projectId }: ServerSideProps) {
         );
       })}
       <Button onClick={() => Router.push(`/projects/${projectId}/decks/create`)}>NEW deck</Button>
-    </div>
+    </PageLayout>
   );
 }
