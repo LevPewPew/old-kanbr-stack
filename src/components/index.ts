@@ -2,6 +2,7 @@ export { default as AppLayout } from './app-layout';
 export { default as Button } from './button';
 export { default as CardCardItem } from './card-card-item';
 export { default as CardItem } from './card-item';
+export { default as CardItemList } from './card-item-list';
 export { default as CardForm } from './card-form';
 export { default as DeckCardItem } from './deck-card-item';
 export { default as DeckForm } from './deck-form';

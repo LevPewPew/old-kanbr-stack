@@ -1,8 +1,7 @@
 import React from 'react';
 import { InferGetServerSidePropsType } from 'next';
 import prisma from '~/clients/prisma';
-import { SimpleGrid } from '@chakra-ui/react';
-import { CardCardItem, PageLayout } from '~/components';
+import { CardCardItem, CardItemList, PageLayout } from '~/components';
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
@@ -27,7 +26,7 @@ marketing/UX name for the route and heading can change as needed. */
 export default function GraphViewPage(props: ServerSideProps) {
   return (
     <PageLayout heading="The Big Picture" maxWidth="fit-content">
-      <SimpleGrid columns={5} spacing={10}>
+      <CardItemList>
         {props.cards.map((card) => {
           return (
             <CardCardItem
@@ -39,7 +38,7 @@ export default function GraphViewPage(props: ServerSideProps) {
             />
           );
         })}
-      </SimpleGrid>
+      </CardItemList>
     </PageLayout>
   );
 }

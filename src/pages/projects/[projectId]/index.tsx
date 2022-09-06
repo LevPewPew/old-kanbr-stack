@@ -2,7 +2,7 @@ import React from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Router from 'next/router';
 import prisma from '~/clients/prisma';
-import { Button, DeckCardItem, PageLayout } from '~/components';
+import { Button, CardItemList, DeckCardItem, PageLayout } from '~/components';
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
@@ -24,17 +24,19 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext<any>) {
 export default function ProjectPage({ decks, projectId }: ServerSideProps) {
   return (
     <PageLayout heading="Projects">
-      {decks.map((deck) => {
-        return (
-          <DeckCardItem
-            key={deck.id}
-            title={deck.title}
-            description={deck.description}
-            projectId={projectId}
-            deckId={deck.id}
-          />
-        );
-      })}
+      <CardItemList>
+        {decks.map((deck) => {
+          return (
+            <DeckCardItem
+              key={deck.id}
+              title={deck.title}
+              description={deck.description}
+              projectId={projectId}
+              deckId={deck.id}
+            />
+          );
+        })}
+      </CardItemList>
       <Button onClick={() => Router.push(`/projects/${projectId}/decks/create`)}>NEW deck</Button>
     </PageLayout>
   );
