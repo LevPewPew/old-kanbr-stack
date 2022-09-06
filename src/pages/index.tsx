@@ -1,12 +1,12 @@
 import React from 'react';
-import { PageLayout } from '~/components';
+import { AppLayout } from '~/components';
 
 export default function HomePage() {
   return (
-    <PageLayout>
+    <AppLayout>
       <div className="page">
         <h1>HOME PAGE PLACEHOLDER</h1>
       </div>
-    </PageLayout>
+    </AppLayout>
   );
 }

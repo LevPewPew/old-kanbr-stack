@@ -7,5 +7,5 @@ export { default as DeckVisual } from './deck-visual';
 export { default as Header } from './header';
 export { default as Link } from './link';
 export { default as CardItem } from './card-item';
-export { default as PageLayout } from './page-layout';
+export { default as AppLayout } from './app-layout';
 export { default as ProjectForm } from './project-form';

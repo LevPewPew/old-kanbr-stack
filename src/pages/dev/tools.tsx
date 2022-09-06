@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, PageLayout } from '~/components';
+import { Button, AppLayout } from '~/components';
 import { useQuery } from '~/hooks';
 
 /* FIXME make this page only visible by dev accounts */
@@ -22,12 +22,12 @@ export default function DevPage() {
   }, [clientError]);
 
   return (
-    <PageLayout>
+    <AppLayout>
       <div className="page">
         <h1>Dev testing and troubleshooting tools</h1>
         <Button onClick={getError500}>Get 500 Error</Button>
         <Button onClick={() => setClientError(true)}>Create Client Error</Button>
       </div>
-    </PageLayout>
+    </AppLayout>
   );
 }

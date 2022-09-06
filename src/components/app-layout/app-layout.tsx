@@ -20,7 +20,7 @@ interface LinkModel {
 
 /* FIXME make more composable by lifting left and right to props. This will
 allow pages to control what is in navigation */
-export default function PageLayout({ children, maxWidth = 'container.lg' }: Props) {
+export default function AppLayout({ children, maxWidth = 'container.lg' }: Props) {
   const { status: userStatus, data: session } = useSession();
   const router = useRouter();
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { PageLayout } from '~/components';
+import { AppLayout } from '~/components';
 import { CardForm } from '~/components';
 
 export default function CreateCardPage() {
@@ -25,10 +25,10 @@ export default function CreateCardPage() {
   }
 
   return (
-    <PageLayout>
+    <AppLayout>
       <div className="page">
         <CardForm deckId={UNSAFE_deckId} projectId={UNSAFE_projectId} />
       </div>
-    </PageLayout>
+    </AppLayout>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSession } from 'next-auth/react';
-import { PageLayout, ProjectForm } from '~/components';
+import { AppLayout, ProjectForm } from '~/components';
 
 export default function CreateProjectPage() {
   const { data: session } = useSession();
@@ -9,9 +9,9 @@ export default function CreateProjectPage() {
 
   if (userId) {
     return (
-      <PageLayout>
+      <AppLayout>
         <ProjectForm userId={userId} />
-      </PageLayout>
+      </AppLayout>
     );
   }
 }

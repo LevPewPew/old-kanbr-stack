@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { PageLayout } from '~/components';
+import { AppLayout } from '~/components';
 import { DeckForm } from '~/components';
 
 export default function CreateDeckPage() {
@@ -17,10 +17,10 @@ export default function CreateDeckPage() {
   }
 
   return (
-    <PageLayout>
+    <AppLayout>
       <div className="page">
         <DeckForm projectId={UNSAFE_projectId} />
       </div>
-    </PageLayout>
+    </AppLayout>
   );
 }
