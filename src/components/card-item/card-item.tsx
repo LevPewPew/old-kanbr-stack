@@ -7,6 +7,8 @@ interface Props {
   size?: CardItemSize;
 }
 
+/* TODO make this non-inferred type. make it so if expanded, it can only be
+given values that fall into types accepted by a Chakra `sx` prop */
 export const cardSizeStyles = {
   large: {
     width: '2xl',
