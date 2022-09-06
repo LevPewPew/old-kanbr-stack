@@ -54,7 +54,7 @@ export default function AppLayout({ children }: Props) {
   ];
 
   return (
-    <div>
+    <Container maxWidth="container.xl">
       <Header
         left={leftLinks.map((link) => {
           if (link.displayStatus === userStatus) {
@@ -83,6 +83,6 @@ export default function AppLayout({ children }: Props) {
       />
       {children}
       <div>FOOTER PLACEHOLDER</div>
-    </div>
+    </Container>
   );
 }
