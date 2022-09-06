@@ -2,6 +2,7 @@ import React from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { getSession } from 'next-auth/react';
 import Router from 'next/router';
+import { Divider } from '@chakra-ui/react';
 import prisma from '~/clients/prisma';
 import { Button, CardItemList, PageLayout, ProjectCardItem } from '~/components';
 

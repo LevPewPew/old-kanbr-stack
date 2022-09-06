@@ -54,7 +54,7 @@ export default function AppLayout({ children }: Props) {
   ];
 
   return (
-    <Flex direction="column" height="100%">
+    <Flex direction="column" height="100vh">
       <Header
         left={leftLinks.map((link) => {
           if (link.displayStatus === userStatus) {
@@ -81,9 +81,7 @@ export default function AppLayout({ children }: Props) {
           }
         })}
       />
-      <Container maxWidth="container.xl" height="100vh">
-        {children}
-      </Container>
+      <Container maxWidth="container.xl">{children}</Container>
       <Box marginTop="auto">
         <Text>FOOTER PLACEHOLDER</Text>
       </Box>

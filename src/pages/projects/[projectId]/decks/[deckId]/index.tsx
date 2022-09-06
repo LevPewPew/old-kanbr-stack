@@ -3,9 +3,9 @@ import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Router from 'next/router';
 import produce from 'immer';
 import prisma from '~/clients/prisma';
-import { Button, HStack } from '@chakra-ui/react';
+import { Button as ChakraButton, HStack } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
-import { CardCardItem, DeckVisual, PageLayout } from '~/components';
+import { Button, CardCardItem, DeckVisual, PageLayout } from '~/components';
 import { useMutation } from '~/hooks';
 
 type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>;
@@ -52,7 +52,7 @@ export default function DeckPage({ cards, deckId, projectId }: ServerSideProps) 
 
   function handleRightClick() {
     removeCard();
-    // LEFTOFF use the DecidedCard model to keep track of what cards a user is interested in, and with what they are matched with
+    // TODO use the DecidedCard model to keep track of what cards a user is interested in, and with what they are matched with
   }
 
   function handleNewCardClick() {
@@ -71,9 +71,9 @@ export default function DeckPage({ cards, deckId, projectId }: ServerSideProps) 
   return (
     <PageLayout heading="Your Deck">
       <HStack spacing="4">
-        <Button onClick={handleLeftClick} colorScheme={'red'}>
+        <ChakraButton onClick={handleLeftClick} colorScheme={'red'}>
           {'<- LEFT'}
-        </Button>
+        </ChakraButton>
         <DeckVisual>
           {deck.map((card) => {
             return (
@@ -88,13 +88,11 @@ export default function DeckPage({ cards, deckId, projectId }: ServerSideProps) 
             );
           })}
         </DeckVisual>
-        <Button onClick={handleRightClick} colorScheme={'green'}>
+        <ChakraButton onClick={handleRightClick} colorScheme={'green'}>
           {'RIGHT ->'}
-        </Button>
+        </ChakraButton>
       </HStack>
-      <Button onClick={handleNewCardClick} colorScheme={'green'}>
-        New Card
-      </Button>
+      <Button onClick={handleNewCardClick}>New Card</Button>
     </PageLayout>
   );
 }
