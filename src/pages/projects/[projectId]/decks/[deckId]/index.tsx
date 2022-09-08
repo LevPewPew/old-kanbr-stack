@@ -50,6 +50,8 @@ export default function DeckPage({ cards, deckId, projectId }: ServerSideProps) 
     removeCard();
   }
 
+  // LEFTOFF do the stuff to actually model tinder flow. use DecidedCard, get interests and match (for now just random match, later based on "compatability")
+
   function handleRightClick() {
     removeCard();
     // TODO use the DecidedCard model to keep track of what cards a user is interested in, and with what they are matched with
