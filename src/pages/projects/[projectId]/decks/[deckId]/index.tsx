@@ -82,7 +82,7 @@ export default function DeckPage({ cards, deckId, projectId }: ServerSideProps) 
               <CardCardItem
                 key={card.id}
                 title={card.title}
-                description={card.description}
+                description={card.description ?? undefined}
                 status={card.status}
                 users={card.users}
                 size="large"

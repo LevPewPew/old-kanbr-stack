@@ -36,7 +36,7 @@ export default function ProjectsPage({ projects }: ServerSideProps) {
             <ProjectCardItem
               key={project.id}
               title={project.title}
-              description={project.description}
+              description={project.description ?? undefined}
               projectId={project.id}
             />
           );

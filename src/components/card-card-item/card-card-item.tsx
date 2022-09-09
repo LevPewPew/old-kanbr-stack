@@ -1,14 +1,14 @@
 import React, { ComponentProps } from 'react';
 import { Heading, Text } from '@chakra-ui/react';
 import { capitalCase } from 'change-case';
-import { Card as CardModel } from '@prisma/client';
+import { CardStatus } from '@prisma/client';
 import { CardItem } from '~/components';
 
 interface Props {
   title: string;
-  description: string | nullish;
+  description?: string;
   users: { id: string; name: string }[];
-  status: CardModel['status'];
+  status: CardStatus;
   size?: ComponentProps<typeof CardItem>['size'];
 }
 

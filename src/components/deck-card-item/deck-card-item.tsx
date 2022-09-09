@@ -1,11 +1,11 @@
 import React, { ComponentProps } from 'react';
 import Router from 'next/router';
 import { Heading, Text } from '@chakra-ui/react';
-import { Button, CardItem } from '~/components';
+import { CardItem } from '~/components';
 
 interface Props {
   title: string;
-  description: string | nullish;
+  description?: string;
   size?: ComponentProps<typeof CardItem>['size'];
   projectId: string;
   deckId: string;

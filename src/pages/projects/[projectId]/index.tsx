@@ -30,7 +30,7 @@ export default function ProjectPage({ decks, projectId }: ServerSideProps) {
             <DeckCardItem
               key={deck.id}
               title={deck.title}
-              description={deck.description}
+              description={deck.description ?? undefined}
               projectId={projectId}
               deckId={deck.id}
             />

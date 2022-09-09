@@ -5,7 +5,7 @@ import { CardItem } from '~/components';
 
 interface Props {
   title: string;
-  description: string | nullish;
+  description?: string;
   projectId: string;
   size?: ComponentProps<typeof CardItem>['size'];
 }
