@@ -1,3 +1,3 @@
-# Fullstack Authentication Example with Next.js and NextAuth.js
+# Kanbr
 
-This is the starter project for the fullstack tutorial with Next.js and Prisma. You can find the final version of this project in the [`final`](https://github.com/prisma/blogr-nextjs-prisma/tree/final) branch of this repo.
+Simplify decision making and cut down on agile "rituals" by combining Kanban with Tinder. Developers can "swipe left" and "swipe right" on a stack of non-backlogged tickets to get "matched" based on a variety of weightings.
